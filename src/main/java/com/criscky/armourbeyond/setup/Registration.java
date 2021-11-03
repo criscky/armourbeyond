@@ -35,6 +35,7 @@ public class Registration {
 
         ModItemGroup.register();
         ModBlocks.register();
+        ModRecipes.register();
 
     }
 
