@@ -8,14 +8,14 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class ModRecipes {
     public static final class Types {
-        public static final IRecipeType<InjectorRecipe> PRESSING = IRecipeType.register(
+        public static final IRecipeType<InjectorRecipe> INJECTION = IRecipeType.register(
                 ArmourBeyond.MOD_ID + ":injection");
 
         private Types() {}
     }
 
     public static final class Serializers {
-        public static final RegistryObject<IRecipeSerializer<?>> PRESSING = Registration.RECIPE_SERIALIZERS.register(
+        public static final RegistryObject<IRecipeSerializer<?>> INJECTION = Registration.RECIPE_SERIALIZERS.register(
                 "injection", InjectorRecipe.Serializer::new);
 
         private Serializers() {}

@@ -33,6 +33,7 @@ public class Registration {
         RECIPE_SERIALIZERS.register(modEventBus);
 
 
+        ModTileEntities.register();
         ModItemGroup.register();
         ModBlocks.register();
         ModRecipes.register();

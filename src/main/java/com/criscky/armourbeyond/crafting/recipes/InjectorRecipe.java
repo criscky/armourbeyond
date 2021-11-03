@@ -1,6 +1,9 @@
 package com.criscky.armourbeyond.crafting.recipes;
 
+import com.criscky.armourbeyond.setup.ModRecipes;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -23,11 +26,11 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     private final NonNullList<Ingredient> ingredients;
     private final IRecipeSerializer<?> serializer;
 
-    public InjectorRecipe(IRecipeType<?> pType, IRecipeSerializer<?> pSerializer, ResourceLocation pId, String pGroup, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
+    public InjectorRecipe(ResourceLocation pId, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
         this.id = pId;
-        this.type = pType;
-        this.serializer = pSerializer;
-        this.group = pGroup;
+        this.type = ModRecipes.Types.INJECTION;
+        this.serializer = ModRecipes.Serializers.INJECTION.get();
+        this.group = "";
         this.result = pResult;
         this.ingredients = pIngredients;
     }
@@ -83,30 +86,57 @@ public class InjectorRecipe implements IRecipe<IInventory> {
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<InjectorRecipe> {
         @Override
-        public InjectorRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            Ingredient ingredient = Ingredient.fromJson(json.get("ingredient"));
-            ResourceLocation itemId = new ResourceLocation(JSONUtils.getAsString(json, "result"));
-            int count = JSONUtils.getAsInt(json, "count", 1);
+        public InjectorRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
+            NonNullList<Ingredient> nonnulllist = itemsFromJson(JSONUtils.getAsJsonArray(pJson, "ingredients"));
+            ResourceLocation itemId = new ResourceLocation(JSONUtils.getAsString(pJson, "result"));
+            int count = JSONUtils.getAsInt(pJson, "count", 1);
 
-            ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
-
-            //return new InjectorRecipe(recipeId, ingredient, result);
-            return null;
+            if (nonnulllist.isEmpty()) {
+                throw new JsonParseException("No ingredients for shapeless recipe");
+            } else if (nonnulllist.size() > 5) {
+                throw new JsonParseException("Too many ingredients for shapeless recipe the max is 5");
+            } else {
+                ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
+                return new InjectorRecipe(pRecipeId, result, nonnulllist);
+            }
         }
 
-        @Nullable
-        @Override
-        public InjectorRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
-            Ingredient ingredient = Ingredient.fromNetwork(buffer);
-            ItemStack result = buffer.readItem();
-            //return new InjectorRecipe(recipeId, ingredient, result);
-            return null;
+
+        private static NonNullList<Ingredient> itemsFromJson(JsonArray pIngredientArray) {
+            NonNullList<Ingredient> nonnulllist = NonNullList.create();
+
+            for(int i = 0; i < pIngredientArray.size(); ++i) {
+                Ingredient ingredient = Ingredient.fromJson(pIngredientArray.get(i));
+                if (!ingredient.isEmpty()) {
+                    nonnulllist.add(ingredient);
+                }
+            }
+
+            return nonnulllist;
         }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, InjectorRecipe recipe) {
-            /*recipe.ingredient.toNetwork(buffer);
-            buffer.writeItem(recipe.result);*/
+        public InjectorRecipe fromNetwork(ResourceLocation pRecipeId, PacketBuffer pBuffer) {
+            int i = pBuffer.readVarInt();
+            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i, Ingredient.EMPTY);
+
+            for(int j = 0; j < nonnulllist.size(); ++j) {
+                nonnulllist.set(j, Ingredient.fromNetwork(pBuffer));
+            }
+            ItemStack result = pBuffer.readItem();
+
+            return new InjectorRecipe(pRecipeId, result, nonnulllist);
+        }
+
+        @Override
+        public void toNetwork(PacketBuffer pBuffer, InjectorRecipe pRecipe) {
+            pBuffer.writeVarInt(pRecipe.ingredients.size());
+
+            for(Ingredient ingredient : pRecipe.ingredients) {
+                ingredient.toNetwork(pBuffer);
+            }
+
+            pBuffer.writeItem(pRecipe.result);
         }
     }
 }
