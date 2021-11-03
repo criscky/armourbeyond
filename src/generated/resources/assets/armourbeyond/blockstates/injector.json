@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "armourbeyond:block/injector"
+    }
+  }
+}
