@@ -1,12 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "down": "armourbeyond:block/down",
-    "up": "armourbeyond:block/top",
-    "north": "armourbeyond:block/front",
-    "south": "armourbeyond:block/back",
-    "east": "armourbeyond:block/sides",
-    "west": "armourbeyond:block/sides",
-    "all": "armourbeyond:block/injector"
+    "side": "armourbeyond:block/sides",
+    "bottom": "armourbeyond:block/down",
+    "top": "armourbeyond:block/top"
   }
 }

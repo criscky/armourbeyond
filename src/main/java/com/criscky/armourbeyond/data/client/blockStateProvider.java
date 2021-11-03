@@ -22,17 +22,28 @@ public class blockStateProvider  extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        BlockModelBuilder modelinjector = models().cube("injector",
-                modLoc("block/down"),
-                modLoc("block/top"),
-                modLoc("block/front"),
-                modLoc("block/back"),
+        BlockModelBuilder modelinjector = models().cubeBottomTop("injector",
                 modLoc("block/sides"),
-                modLoc("block/sides"));
+                modLoc("block/down"),
+                modLoc("block/top"));
         //horizontalBlock(ModBlocks.INJECTOR.get(), modelinjector, 0);
-        simpleBlock(ModBlocks.INJECTOR.get());
+
 
     }
 
-
+    private void orientableMachineBlock(Block block, String name) {
+        ModelFile.ExistingModelFile offModel = getExistingModel(name);
+        ModelFile.ExistingModelFile onModel = getExistingModel(name + "_on");
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            boolean lit = state.getValue(BlockStateProperties.LIT);
+            return ConfiguredModel.builder()
+                    .modelFile(lit ? onModel : offModel)
+                    .rotationY((int) facing.getOpposite().toYRot())
+                    .build();
+        });
+    }
+    private ModelFile.ExistingModelFile getExistingModel(String blockName) {
+        return models().getExistingFile(modLoc(blockName));
+    }
 }

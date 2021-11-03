@@ -1,5 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
+import com.criscky.armourbeyond.setup.blocks.Injector;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> INJECTOR = register("injector", () -> new Block(AbstractBlock.Properties.of(Material.CLAY)));
+    public static final RegistryObject<Block> INJECTOR = register("injector", () -> new Injector());
 
 
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block){
