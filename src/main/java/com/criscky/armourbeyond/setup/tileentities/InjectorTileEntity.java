@@ -12,11 +12,12 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -33,6 +34,33 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
     private final LazyOptional<? extends IItemHandler>[] handlers;
 
     private int progress = 0;
+
+
+    private final IIntArray fields = new IIntArray() {
+        @Override
+        public int get(int index) {
+            switch (index) {
+                case 0:
+                    return progress;
+                default:
+                    return 0;
+            }
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0:
+                    progress = value;
+                    break;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 1;
+        }
+    };
 
     public InjectorTileEntity() {
         super(ModTileEntities.INJECTOR.get());
@@ -106,6 +134,11 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
 
         progress = 0;
         this.removeItem(0, 1);
+    }
+
+
+    public void encodeExtraData(PacketBuffer buffer) {
+        buffer.writeByte(fields.getCount());
     }
 
 
