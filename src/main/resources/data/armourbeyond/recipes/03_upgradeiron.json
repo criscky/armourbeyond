@@ -8,16 +8,16 @@
       "item": "minecraft:iron_ingot"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:iron_block"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:coal"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:coal"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:iron_block"
     }
   ],
   "result":"minecraft:diamond_chestplate",

@@ -8,16 +8,16 @@
       "item": "minecraft:emerald"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:emerald_block"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:blaze_rod"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:blaze_rod"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:emerald_block"
     }
   ],
   "result":"minecraft:diamond_chestplate",

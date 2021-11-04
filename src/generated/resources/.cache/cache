@@ -1,4 +1,6 @@
 a7039390ff3a17ca33b26b69080a4283f59b94ae assets/armourbeyond/models/block/injector.json
+5d4c8eee0f701bb80ffac931c19ffef99f06fced assets/armourbeyond/models/item/devitem1.json
+2d93c055d4cd4c426e74e40f25933dfaeee430a2 assets/armourbeyond/models/item/devitem2.json
 6f98293322abcf083bd544d03f0e1c60a62010a6 assets/armourbeyond/models/item/injector.json
 982f82a634ac6b0d7858d4aef41bb0f5ab1dc289 data/armourbeyond/loot_tables/blocks/injector.json
 608ff109eabb730de52bea6d9472ad94d1be8640 data/armourbeyond/tags/items/upgradable_armor.json

@@ -37,11 +37,12 @@ public class Registration {
         RECIPE_SERIALIZERS.register(modEventBus);
 
 
-        ModRecipes.register();
         ModContainerTypes.register();
         ModTileEntities.register();
         ModItemGroup.register();
         ModBlocks.register();
+        ModItems.register();
+        ModRecipes.register();
 
 
     }

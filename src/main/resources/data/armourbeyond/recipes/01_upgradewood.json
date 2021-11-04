@@ -8,16 +8,16 @@
       "item": "minecraft:spruce_log"
     },
     {
-      "item": "minecraft:bread"
+      "tag": "minecraft:logs"
     },
     {
-      "item": "minecraft:bread"
+      "tag": "minecraft:logs"
     },
     {
-      "item": "minecraft:bread"
+      "tag": "minecraft:logs"
     },
     {
-      "item": "minecraft:bread"
+      "tag": "minecraft:logs"
     }
   ],
   "result":"minecraft:diamond_chestplate",

@@ -151,6 +151,10 @@ public class InjectorRecipe implements IRecipe<IInventory> {
         return this.type;
     }
 
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<InjectorRecipe> {
         @Override

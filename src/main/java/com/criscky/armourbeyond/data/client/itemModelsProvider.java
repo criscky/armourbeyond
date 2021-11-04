@@ -17,6 +17,9 @@ public class itemModelsProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent("injector", modLoc("block/injector"));
 
+        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+        builder(itemGenerated, "devitem1");
+        builder(itemGenerated, "devitem2");
     }
 
     private void builder(ModelFile itemgenerated, String name) {

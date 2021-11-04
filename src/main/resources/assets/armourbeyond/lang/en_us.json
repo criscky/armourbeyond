@@ -1,5 +1,7 @@
 {
   "block.armourbeyond.injector": "Injector",
-  "container.armourbeyond.injector": ""
+  "container.armourbeyond.injector": "",
+  "item.armourbeyond.devitem1": "Rank-Up Recipe",
+  "item.armourbeyond.devitem2": "Level-Up Recipe"
 
 }

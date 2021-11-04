@@ -8,16 +8,16 @@
       "item": "minecraft:stone"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:stone"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:coal"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:coal"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:stone"
     }
   ],
   "result":"minecraft:diamond_chestplate",

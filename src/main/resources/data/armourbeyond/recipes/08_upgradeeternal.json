@@ -8,16 +8,16 @@
       "item": "minecraft:nether_star"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:nether_star"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:dragon_breath"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:dragon_breath"
     },
     {
-      "item": "minecraft:bread"
+      "item": "minecraft:nether_star"
     }
   ],
   "result":"minecraft:diamond_chestplate",
