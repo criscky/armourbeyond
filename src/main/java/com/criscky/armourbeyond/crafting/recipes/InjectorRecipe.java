@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -22,6 +23,10 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
+import java.util.stream.IntStream;
+
+import static com.criscky.armourbeyond.Helper.getLevel;
+import static com.criscky.armourbeyond.Helper.getRank;
 
 public class InjectorRecipe implements IRecipe<IInventory> {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -62,7 +67,35 @@ public class InjectorRecipe implements IRecipe<IInventory> {
                 inputs.add(itemstack);
             }
         }
-        return i == this.ingredients.size() && (net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs,  this.ingredients) != null);
+
+        boolean OkUpgrade = false;
+
+        if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
+            if(getRank(pInv.getItem(0))==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
+                OkUpgrade = true;
+            }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == Items.SAND)){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==0 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.SPRUCE_LOG){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==1 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.STONE){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==2 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.IRON_INGOT){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==3 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.GOLD_INGOT){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==4 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.DIAMOND){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==5 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.EMERALD){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==6 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.NETHERITE_INGOT){
+                OkUpgrade = true;
+            }else if(getRank(pInv.getItem(0))==7 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.NETHER_STAR){
+                OkUpgrade = true;
+            }
+        }else
+            OkUpgrade = true;
+
+        return i == this.ingredients.size() && (net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs,  this.ingredients) != null) && OkUpgrade;
     }
 
     @Nonnull
@@ -87,10 +120,6 @@ public class InjectorRecipe implements IRecipe<IInventory> {
                 tag.putInt(rankString, 0);
                 tag.putInt(levelString, 0);
             }
-
-
-
-
 
             return item;
         }

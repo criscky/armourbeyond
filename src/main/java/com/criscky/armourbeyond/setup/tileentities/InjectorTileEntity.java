@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.stream.IntStream;
 
 public class InjectorTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
-    public static final int WORK_TIME = 60 * 20;
+    public static final int WORK_TIME = 3 * 20;
 
     private NonNullList<ItemStack> items;
     private final LazyOptional<? extends IItemHandler>[] handlers;

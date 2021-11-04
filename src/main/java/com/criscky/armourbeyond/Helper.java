@@ -17,7 +17,6 @@ public class Helper {
         if(item.getTagElement("Rank") != null){
             level = item.getTagElement("Rank").getInt(new ResourceLocation(ArmourBeyond.MOD_ID, "level").toString());
         }
-
         return level;
     }
 

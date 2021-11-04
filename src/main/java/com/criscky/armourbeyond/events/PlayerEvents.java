@@ -11,12 +11,14 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityLeaveWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.UUID;
 
+import static com.criscky.armourbeyond.Helper.getLevel;
 import static com.criscky.armourbeyond.Helper.getRank;
 
 @Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -30,8 +32,15 @@ public class PlayerEvents {
     public static void onPlayerJoin(EntityJoinWorldEvent event ){
         if(event.getEntity() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntity();
-            RemoveAttributes(player);
+            UpdateAttributes(player);
             //System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYY");
+        }
+    }
+    @SubscribeEvent
+    public static void onPlayerLeft(EntityLeaveWorldEvent event){
+        if(event.getEntity() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntity();
+            RemoveAttributes(player);
         }
     }
 
@@ -40,37 +49,28 @@ public class PlayerEvents {
         if(event.getEntity() instanceof PlayerEntity){
             PlayerEntity player = (PlayerEntity) event.getEntity();
             UpdateAttributes(player);
-            //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
 
 
 
     private static void UpdateAttributes(PlayerEntity player){
-        System.out.println(player.getItemBySlot(EquipmentSlotType.HEAD).getItem().toString());
-        System.out.println(player.getItemBySlot(EquipmentSlotType.CHEST).getItem().toString());
-        System.out.println(player.getItemBySlot(EquipmentSlotType.LEGS).getItem().toString());
-        System.out.println(player.getItemBySlot(EquipmentSlotType.FEET).getItem().toString());
+        float toughness = getToughnessSlot(EquipmentSlotType.HEAD, player, 4F, 0.5F) +
+                getToughnessSlot(EquipmentSlotType.CHEST, player, 4F, 0.5F) +
+                getToughnessSlot(EquipmentSlotType.LEGS, player, 4F, 0.5F) +
+                getToughnessSlot(EquipmentSlotType.FEET, player, 4F, 0.5F);
 
+        float defense = getDefenseSlot(EquipmentSlotType.HEAD, player, 10) +
+                getDefenseSlot(EquipmentSlotType.CHEST, player, 20) +
+                getDefenseSlot(EquipmentSlotType.LEGS, player, 15) +
+                getDefenseSlot(EquipmentSlotType.FEET, player, 10);
 
-        float toughness = 0;
-        if(!player.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(EquipmentSlotType.HEAD).getItem());
-            toughness += Math.min((getRank(player.getItemBySlot(EquipmentSlotType.HEAD))+1)*0.5+armortough, 4);
+        if(toughness>0 && defense>0) {
+            player.getAttributes().addTransientAttributeModifiers(createAttributeMapDefense(defense));
+            player.getAttributes().addTransientAttributeModifiers(createAttributeMapToughness(toughness));
+        }else{
+            RemoveAttributes(player);
         }
-        if(!player.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(EquipmentSlotType.CHEST).getItem());
-            toughness += Math.min((getRank(player.getItemBySlot(EquipmentSlotType.CHEST))+1)*0.5+armortough, 4);
-        }
-        if(!player.getItemBySlot(EquipmentSlotType.LEGS).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(EquipmentSlotType.LEGS).getItem());
-            toughness += Math.min((getRank(player.getItemBySlot(EquipmentSlotType.LEGS))+1)*0.5+armortough, 4);
-        }
-        if(!player.getItemBySlot(EquipmentSlotType.FEET).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(EquipmentSlotType.FEET).getItem());
-            toughness += Math.min((getRank(player.getItemBySlot(EquipmentSlotType.FEET))+1)*0.5+armortough, 4);
-        }
-        System.out.println("Toughness: "+toughness);
     }
     private static void RemoveAttributes(PlayerEntity player){
         player.getAttributes().removeAttributeModifiers(createAttributeMapDefense(0));
@@ -78,6 +78,32 @@ public class PlayerEvents {
     }
 
 
+    private static float getDefenseSlot(EquipmentSlotType slot, PlayerEntity player, float max){
+        if(!player.getItemBySlot(slot).isEmpty()) {
+            float armordefense = GetDefenseItem(player.getItemBySlot(slot).getItem());
+            return (float) Math.max(Math.min(((getRank(player.getItemBySlot(slot)))*10 +
+                    (getLevel(player.getItemBySlot(slot))))
+                    *(max/80), max-armordefense), 0);
+        }else{
+            return 0;
+        }
+    }
+    private static float GetDefenseItem(Item item){
+        if(item instanceof ArmorItem){
+            return ((ArmorItem) item).getDefense();
+        }else{
+            return 0;
+        }
+    }
+
+    private static float getToughnessSlot(EquipmentSlotType slot, PlayerEntity player, float max, float multiplier){
+        if(!player.getItemBySlot(slot).isEmpty()) {
+            float armortough = GetToughnessItem(player.getItemBySlot(slot).getItem());
+            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*multiplier, max-armortough), 0);
+        }else{
+            return 0;
+        }
+    }
     private static float GetToughnessItem(Item item){
         if(item instanceof ArmorItem){
             return ((ArmorItem) item).getToughness();
