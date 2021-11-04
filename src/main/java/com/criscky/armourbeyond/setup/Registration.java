@@ -5,8 +5,14 @@ import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.registry.Registry;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,15 +39,28 @@ public class Registration {
         RECIPE_SERIALIZERS.register(modEventBus);
 
 
+        ModRecipes.register();
+        ModContainerTypes.register();
         ModTileEntities.register();
         ModItemGroup.register();
         ModBlocks.register();
-        ModRecipes.register();
+
 
     }
 
 
     private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
         return DeferredRegister.create(registry, ArmourBeyond.MOD_ID);
+    }
+
+
+    @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static final class Client {
+        private Client() {}
+
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            ModContainerTypes.registerScreens(event);
+        }
     }
 }

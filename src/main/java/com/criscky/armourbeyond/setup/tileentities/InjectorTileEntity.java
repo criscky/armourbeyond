@@ -4,6 +4,7 @@ import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModRecipes;
 import com.criscky.armourbeyond.setup.ModTileEntities;
+import com.criscky.armourbeyond.setup.containers.InjectorContainer;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,7 +30,8 @@ import javax.annotation.Nullable;
 import java.util.stream.IntStream;
 
 public class InjectorTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
-    static final int WORK_TIME = 60 * 20;
+    public static final int WORK_TIME = 60 * 20;
+
     private NonNullList<ItemStack> items;
     private final LazyOptional<? extends IItemHandler>[] handlers;
 
@@ -65,7 +67,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
     public InjectorTileEntity() {
         super(ModTileEntities.INJECTOR.get());
         this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-        this.items = NonNullList.withSize(6, ItemStack.EMPTY);
+        this.items = NonNullList.withSize(7, ItemStack.EMPTY);
     }
 
     @Override
@@ -100,7 +102,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
     private void doWork(InjectorRecipe recipe) {
         assert this.level != null;
 
-        ItemStack current = getItem(1);
+        ItemStack current = getItem(6);
         ItemStack output = getWorkOutput(recipe);
 
         if (!current.isEmpty()) {
@@ -129,11 +131,16 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
         if (!current.isEmpty()) {
             current.grow(output.getCount());
         } else {
-            setItem(5, output);
+            setItem(6, output);
         }
 
         progress = 0;
         this.removeItem(0, 1);
+        this.removeItem(1, 1);
+        this.removeItem(2, 1);
+        this.removeItem(3, 1);
+        this.removeItem(4, 1);
+        this.removeItem(5, 1);
     }
 
 
@@ -164,18 +171,17 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
 
     @Override
     protected Container createMenu(int pId, PlayerInventory pPlayer) {
-        /*the container i'll create later*/
-        return null;
+        return new InjectorContainer(pId, pPlayer, this, this.fields);
     }
 
     @Override
     public int getContainerSize() {
-        return 6;
+        return 7;
     }
 
     @Override
     public boolean isEmpty() {
-        return IntStream.of(0, 1, 2, 3, 4, 5).allMatch(i -> getItem(i).isEmpty());
+        return IntStream.of(0, 1, 2, 3, 4, 5, 6).allMatch(i -> getItem(i).isEmpty());
     }
 
     @Override
@@ -215,7 +221,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
     @Override
     public void load(BlockState state, CompoundNBT tags) {
         super.load(state, tags);
-        this.items = NonNullList.withSize(2, ItemStack.EMPTY);
+        this.items = NonNullList.withSize(7, ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(tags, this.items);
 
         this.progress = tags.getInt("Progress");

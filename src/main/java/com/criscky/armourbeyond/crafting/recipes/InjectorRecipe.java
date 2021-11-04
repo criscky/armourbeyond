@@ -1,5 +1,6 @@
 package com.criscky.armourbeyond.crafting.recipes;
 
+import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.setup.ModRecipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -9,6 +10,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -26,13 +28,18 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     private final NonNullList<Ingredient> ingredients;
     private final IRecipeSerializer<?> serializer;
 
+
+    private final ItemStack resultArmor;
+
     public InjectorRecipe(ResourceLocation pId, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
         this.id = pId;
         this.type = ModRecipes.Types.INJECTION;
-        this.serializer = ModRecipes.Serializers.INJECTION.get();
+        this.serializer = ModRecipes.INJECTION.get();
         this.group = "";
         this.result = pResult;
         this.ingredients = pIngredients;
+
+        resultArmor = ItemStack.EMPTY;
     }
 
 
@@ -49,13 +56,15 @@ public class InjectorRecipe implements IRecipe<IInventory> {
                 inputs.add(itemstack);
             }
         }
-
         return i == this.ingredients.size() && (net.minecraftforge.common.util.RecipeMatcher.findMatches(inputs,  this.ingredients) != null);
     }
 
     @Override
     public ItemStack assemble(IInventory pInv) {
-        return this.result.copy();
+        if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
+            return pInv.getItem(0).copy();
+        }
+            return this.result.copy();
     }
 
     @Override
@@ -93,8 +102,8 @@ public class InjectorRecipe implements IRecipe<IInventory> {
 
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for shapeless recipe");
-            } else if (nonnulllist.size() > 5) {
-                throw new JsonParseException("Too many ingredients for shapeless recipe the max is 5");
+            } else if (nonnulllist.size() > 6) {
+                throw new JsonParseException("Too many ingredients for shapeless recipe the max is 6");
             } else {
                 ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
                 return new InjectorRecipe(pRecipeId, result, nonnulllist);
