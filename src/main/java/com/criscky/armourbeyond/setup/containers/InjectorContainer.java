@@ -6,14 +6,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
-
-import javax.annotation.Nullable;
 
 public class InjectorContainer extends Container {
     private final IInventory inventory;
@@ -28,6 +25,7 @@ public class InjectorContainer extends Container {
         super(ModContainerTypes.INJECTOR.get(), id);
         this.inventory = inventory;
         this.fields = fields;
+        this.addDataSlots(fields);
 
 
         this.addSlot(new Slot(this.inventory, 0, 44, 29));
@@ -70,7 +68,7 @@ public class InjectorContainer extends Container {
     public int getProgressArrowScale() {
         int progress = fields.get(0);
         if (progress > 0) {
-            return progress * 24 / InjectorTileEntity.WORK_TIME;
+            return (int) Math.floor(progress * 24 / InjectorTileEntity.WORK_TIME);
         }
         return 0;
     }

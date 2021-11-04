@@ -5,9 +5,6 @@ import com.criscky.armourbeyond.setup.ModRecipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -17,16 +14,19 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.NBTTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.UUID;
+import java.util.Random;
 
 public class InjectorRecipe implements IRecipe<IInventory> {
+    private static final Logger LOGGER = LogManager.getLogger();
+    Random rand = new Random();
+
     private final ResourceLocation id;
     private final String group;
     private final IRecipeType<?> type;
@@ -70,8 +70,28 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     public ItemStack assemble(IInventory pInv) {
         if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
             ItemStack item;
-            item = pInv
-                    .getItem(0);
+            String rankString = new ResourceLocation(ArmourBeyond.MOD_ID, "rank").toString();
+            String levelString = new ResourceLocation(ArmourBeyond.MOD_ID, "level").toString();
+
+            item = pInv.getItem(0).copy();
+            CompoundNBT tag = item.getOrCreateTagElement("Rank");
+            if(tag.contains(rankString)){
+                if(tag.getInt(levelString)==10){
+                    tag.putInt(rankString, tag.getInt(rankString)+1);
+                    tag.putInt(levelString, 0);
+                }else{
+                    tag.putInt(levelString, tag.getInt(levelString)+1);
+                }
+
+            }else{
+                tag.putInt(rankString, 0);
+                tag.putInt(levelString, 0);
+            }
+
+
+
+
+
             return item;
         }
             return this.result.copy();
