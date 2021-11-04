@@ -5,7 +5,7 @@
       "tag": "armourbeyond:upgradable_armor"
     },
     {
-      "item": "minecraft:gold_ingot"
+      "item": "armourbeyond:upgradegold"
     },
     {
       "item": "minecraft:gold_block"

@@ -5,7 +5,7 @@
       "tag": "armourbeyond:upgradable_armor"
     },
     {
-      "item": "minecraft:diamond"
+      "item": "armourbeyond:upgradediamond"
     },
     {
       "item": "minecraft:diamond_block"

@@ -2,6 +2,15 @@
   "block.armourbeyond.injector": "Injector",
   "container.armourbeyond.injector": "",
   "item.armourbeyond.devitem1": "Rank-Up Recipe",
-  "item.armourbeyond.devitem2": "Level-Up Recipe"
+  "item.armourbeyond.devitem2": "Level-Up Recipe",
+  "item.armourbeyond.eternshard": "Eternity Shard",
+  "item.armourbeyond.upgradewood": "Imbued Eternity Shard: Wood",
+  "item.armourbeyond.upgradestone": "Imbued Eternity Shard: Stone",
+  "item.armourbeyond.upgradeiron": "Imbued Eternity Shard: Iron",
+  "item.armourbeyond.upgradegold": "Imbued Eternity Shard: Gold",
+  "item.armourbeyond.upgradediamond": "Imbued Eternity Shard: Diamond",
+  "item.armourbeyond.upgradeemerald": "Imbued Eternity Shard: Emerald",
+  "item.armourbeyond.upgradenetherite": "Imbued Eternity Shard: Netherite",
+  "item.armourbeyond.upgradeeternal": "Eternity Gem"
 
 }

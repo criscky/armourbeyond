@@ -5,19 +5,19 @@
       "tag": "armourbeyond:upgradable_armor"
     },
     {
-      "item": "minecraft:sand"
+      "item": "armourbeyond:eternshard"
     },
     {
-      "item": "minecraft:sand"
+      "item": "armourbeyond:eternshard"
     },
     {
-      "item": "minecraft:sand"
+      "item": "armourbeyond:eternshard"
     },
     {
-      "item": "minecraft:sand"
+      "item": "armourbeyond:eternshard"
     },
     {
-      "item": "minecraft:sand"
+      "item": "armourbeyond:eternshard"
     }
   ],
   "result":"minecraft:diamond_chestplate",

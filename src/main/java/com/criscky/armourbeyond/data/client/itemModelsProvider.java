@@ -20,6 +20,16 @@ public class itemModelsProvider extends ItemModelProvider {
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
         builder(itemGenerated, "devitem1");
         builder(itemGenerated, "devitem2");
+
+        builder(itemGenerated, "eternshard");
+        builder(itemGenerated, "upgradewood");
+        builder(itemGenerated, "upgradestone");
+        builder(itemGenerated, "upgradeiron");
+        builder(itemGenerated, "upgradegold");
+        builder(itemGenerated, "upgradediamond");
+        builder(itemGenerated, "upgradeemerald");
+        builder(itemGenerated, "upgradenetherite");
+        builder(itemGenerated, "upgradeeternal");
     }
 
     private void builder(ModelFile itemgenerated, String name) {
