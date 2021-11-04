@@ -33,7 +33,6 @@ public class PlayerEvents {
         if(event.getEntity() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntity();
             UpdateAttributes(player);
-            //System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYY");
         }
     }
     @SubscribeEvent

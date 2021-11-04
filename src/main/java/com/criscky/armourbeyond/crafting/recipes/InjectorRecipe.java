@@ -1,6 +1,7 @@
 package com.criscky.armourbeyond.crafting.recipes;
 
 import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.setup.ModItems;
 import com.criscky.armourbeyond.setup.ModRecipes;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -73,23 +74,23 @@ public class InjectorRecipe implements IRecipe<IInventory> {
         if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
             if(getRank(pInv.getItem(0))==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
                 OkUpgrade = true;
-            }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == Items.SAND)){
+            }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == ModItems.ETERNITY_SHARD.get())){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==0 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.SPRUCE_LOG){
+            }else if(getRank(pInv.getItem(0))==0 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_WOOD.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==1 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.STONE){
+            }else if(getRank(pInv.getItem(0))==1 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_STONE.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==2 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.IRON_INGOT){
+            }else if(getRank(pInv.getItem(0))==2 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_IRON.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==3 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.GOLD_INGOT){
+            }else if(getRank(pInv.getItem(0))==3 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_GOLD.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==4 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.DIAMOND){
+            }else if(getRank(pInv.getItem(0))==4 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_DIAMOND.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==5 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.EMERALD){
+            }else if(getRank(pInv.getItem(0))==5 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_EMERALD.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==6 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.NETHERITE_INGOT){
+            }else if(getRank(pInv.getItem(0))==6 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_NETHERITE.get()){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==7 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == Items.NETHER_STAR){
+            }else if(getRank(pInv.getItem(0))==7 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_ETERNAL.get()){
                 OkUpgrade = true;
             }
         }else
