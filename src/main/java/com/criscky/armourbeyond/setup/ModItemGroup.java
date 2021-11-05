@@ -16,7 +16,7 @@ public class ModItemGroup extends ItemGroup {
 
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(Items.DIAMOND);
+        return new ItemStack(Items.NETHERITE_CHESTPLATE);
     }
 
     static void register(){}

@@ -10,7 +10,7 @@ modId="armourbeyond" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Armour Beyond" #mandatory
 logoFile="armourbeyond.png" #optional
-credits="Thanks for this example mod goes to Java" #optional
+credits="" #optional
 authors="criscky" #optional
 description='''
 A simple mod that allow the player to refine and upgrade their armor.
