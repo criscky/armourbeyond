@@ -55,16 +55,7 @@ public class InjectorRecipeCategory implements IRecipeCategory<InjectorRecipe> {
     @Override
     public void setIngredients(InjectorRecipe recipe, IIngredients ingredients) {
         ingredients.setInputIngredients(recipe.getIngredients());
-
-        System.out.println(recipe.getId().getPath());
-        ItemStack messageitem = new ItemStack(ModItems.DEVITEM1.get());
-        if(recipe.getId().getPath().equals("levelup")){
-            ingredients.setOutput(VanillaTypes.ITEM, new ItemStack(ModItems.DEVITEM2.get()));
-        }else if(Stream.of("00_upgradebread", "01_upgradewood", "02_upgradestone", "03_upgradeiron", "04_upgradegold", "05_upgradediamond", "06_upgradeemerald", "07_upgradenetherite", "08_upgradeeternal").anyMatch(s -> recipe.getId().getPath().equals(s))){
-            ingredients.setOutput(VanillaTypes.ITEM, new ItemStack(ModItems.DEVITEM1.get()));
-        }else{
-            ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
-        }
+        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
 
     }
 
