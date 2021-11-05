@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:campfire"
+    },
+    {
+      "tag": "minecraft:logs"
+    },
+    {
+      "item": "minecraft:charcoal"
+    },
+    {
+      "item": "minecraft:charcoal"
+    },
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+  "result":"armourbeyond:upgradewood",
+  "count": 1
+}

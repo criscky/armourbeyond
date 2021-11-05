@@ -1,7 +1,7 @@
 package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.setup.containers.InjectorContainer;
-import com.criscky.armourbeyond.setup.screens.InjectorScreen;
+import com.criscky.armourbeyond.setup.client.screens.InjectorScreen;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;

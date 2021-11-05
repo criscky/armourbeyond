@@ -1,4 +1,4 @@
-package com.criscky.armourbeyond.setup.screens;
+package com.criscky.armourbeyond.setup.client.screens;
 
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.setup.containers.InjectorContainer;

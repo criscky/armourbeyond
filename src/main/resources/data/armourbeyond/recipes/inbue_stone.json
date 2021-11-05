@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:campfire"
+    },
+    {
+      "item": "minecraft:smooth_stone"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:smooth_stone"
+    }
+  ],
+  "result":"armourbeyond:upgradestone",
+  "count": 1
+}

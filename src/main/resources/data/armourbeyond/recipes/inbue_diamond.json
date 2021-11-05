@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:soul_campfire"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    }
+  ],
+  "result":"armourbeyond:upgradediamond",
+  "count": 1
+}

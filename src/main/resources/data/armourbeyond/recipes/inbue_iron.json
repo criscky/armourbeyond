@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:campfire"
+    },
+    {
+      "item": "minecraft:iron_block"
+    },
+    {
+      "item": "minecraft:coal_block"
+    },
+    {
+      "item": "minecraft:coal_block"
+    },
+    {
+      "item": "minecraft:iron_block"
+    }
+  ],
+  "result":"armourbeyond:upgradeiron",
+  "count": 1
+}

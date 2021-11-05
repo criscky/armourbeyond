@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:campfire"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:coal_block"
+    },
+    {
+      "item": "minecraft:coal_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    }
+  ],
+  "result":"armourbeyond:upgradegold",
+  "count": 1
+}

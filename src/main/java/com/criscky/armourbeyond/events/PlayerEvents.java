@@ -1,6 +1,7 @@
 package com.criscky.armourbeyond.events;
 
 import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.Helper;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.ai.attributes.Attribute;
@@ -54,19 +55,20 @@ public class PlayerEvents {
 
 
     private static void UpdateAttributes(PlayerEntity player){
-        float toughness = getToughnessSlot(EquipmentSlotType.HEAD, player, 4F, 0.5F) +
-                getToughnessSlot(EquipmentSlotType.CHEST, player, 4F, 0.5F) +
-                getToughnessSlot(EquipmentSlotType.LEGS, player, 4F, 0.5F) +
-                getToughnessSlot(EquipmentSlotType.FEET, player, 4F, 0.5F);
+        float toughness = getToughnessSlot(EquipmentSlotType.HEAD, player, 5F, 0.625F) +
+                getToughnessSlot(EquipmentSlotType.CHEST, player, 5F, 0.625F) +
+                getToughnessSlot(EquipmentSlotType.LEGS, player, 5F, 0.625F) +
+                getToughnessSlot(EquipmentSlotType.FEET, player, 5F, 0.625F);
 
         float defense = getDefenseSlot(EquipmentSlotType.HEAD, player, 10) +
                 getDefenseSlot(EquipmentSlotType.CHEST, player, 20) +
                 getDefenseSlot(EquipmentSlotType.LEGS, player, 15) +
                 getDefenseSlot(EquipmentSlotType.FEET, player, 10);
 
+
         if(toughness>0 && defense>0) {
-            player.getAttributes().addTransientAttributeModifiers(createAttributeMapDefense(defense));
-            player.getAttributes().addTransientAttributeModifiers(createAttributeMapToughness(toughness));
+            player.getAttributes().addTransientAttributeModifiers(createAttributeMapDefense(Helper.round(defense,2)));
+            player.getAttributes().addTransientAttributeModifiers(createAttributeMapToughness(Helper.round(toughness, 2)));
         }else{
             RemoveAttributes(player);
         }
@@ -82,7 +84,7 @@ public class PlayerEvents {
             float armordefense = GetDefenseItem(player.getItemBySlot(slot).getItem());
             return (float) Math.max(Math.min(((getRank(player.getItemBySlot(slot)))*10 +
                     (getLevel(player.getItemBySlot(slot))))
-                    *(max/80), max-armordefense), 0);
+                    *(max/90), max-armordefense), 0);
         }else{
             return 0;
         }

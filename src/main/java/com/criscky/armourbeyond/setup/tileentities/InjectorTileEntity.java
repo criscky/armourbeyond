@@ -186,7 +186,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
 
     @Override
     public ItemStack getItem(int pIndex) {
-        return items.get(pIndex);
+        return this.items.get(pIndex);
     }
 
     @Override

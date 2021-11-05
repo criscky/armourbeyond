@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class ModTileEntities {
     public static final RegistryObject<TileEntityType<InjectorTileEntity>> INJECTOR = register(
-            "metal_press",
+            "injector",
             InjectorTileEntity::new,
             ModBlocks.INJECTOR
     );

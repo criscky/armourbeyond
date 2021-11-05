@@ -3,7 +3,6 @@ package com.criscky.armourbeyond.integration.jei;
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModBlocks;
-import com.criscky.armourbeyond.setup.ModItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -12,8 +11,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import java.util.stream.Stream;
+import org.jetbrains.annotations.NotNull;
 
 public class InjectorRecipeCategory implements IRecipeCategory<InjectorRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(ArmourBeyond.MOD_ID, "injector");
@@ -28,27 +26,27 @@ public class InjectorRecipeCategory implements IRecipeCategory<InjectorRecipe> {
     }
 
     @Override
-    public ResourceLocation getUid() {
+    public @NotNull ResourceLocation getUid() {
         return UID;
     }
 
     @Override
-    public Class<? extends InjectorRecipe> getRecipeClass() {
+    public @NotNull Class<? extends InjectorRecipe> getRecipeClass() {
         return InjectorRecipe.class;
     }
 
     @Override
-    public String getTitle() {
+    public @NotNull String getTitle() {
         return "Injector";
     }
 
     @Override
-    public IDrawable getBackground() {
+    public @NotNull IDrawable getBackground() {
         return this.background;
     }
 
     @Override
-    public IDrawable getIcon() {
+    public @NotNull IDrawable getIcon() {
         return this.icon;
     }
 
@@ -60,7 +58,7 @@ public class InjectorRecipeCategory implements IRecipeCategory<InjectorRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, InjectorRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, @NotNull InjectorRecipe recipe, @NotNull IIngredients ingredients) {
         recipeLayout.getItemStacks().init(0, true, 43, 28);
         recipeLayout.getItemStacks().init(1, true, 43, 4);
         recipeLayout.getItemStacks().init(2, true, 71, 24);

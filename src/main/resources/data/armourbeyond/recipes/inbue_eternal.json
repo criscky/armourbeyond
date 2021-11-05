@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "item": "armourbeyond:eternshard"
+    },
+    {
+      "item": "minecraft:crying_obsidian"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    }
+  ],
+  "result":"armourbeyond:upgradeeternal",
+  "count": 1
+}
