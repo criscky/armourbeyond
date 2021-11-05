@@ -32,44 +32,48 @@ public class Injector extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape SHAPE_S = Stream.of(
-            Block.box(3, 1, 6, 5, 5, 8),
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(7, 8, 7, 9, 10, 9),
-            Block.box(7, 1, 7, 9, 5, 9),
-            Block.box(7, 1, 3, 9, 5, 5),
-            Block.box(11, 1, 6, 13, 5, 8),
-            Block.box(10, 1, 10, 12, 5, 12),
-            Block.box(4, 1, 10, 6, 5, 12)
+            Block.box(11, 8, 8, 13, 12, 10),
+            Block.box(2, 7, 2, 14, 8, 14),
+            Block.box(7, 14, 7, 9, 16, 9),
+            Block.box(7, 8, 7, 9, 12, 9),
+            Block.box(7, 8, 11, 9, 12, 13),
+            Block.box(3, 8, 8, 5, 12, 10),
+            Block.box(4, 8, 4, 6, 12, 6),
+            Block.box(10, 8, 4, 12, 12, 6),
+            Block.box(0, 0, 0, 16, 7, 16)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     private static final VoxelShape SHAPE_N =Stream.of(
-            Block.box(11, 1, 8, 13, 5, 10),
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(7, 8, 7, 9, 10, 9),
-            Block.box(7, 1, 7, 9, 5, 9),
-            Block.box(7, 1, 11, 9, 5, 13),
-            Block.box(3, 1, 8, 5, 5, 10),
-            Block.box(4, 1, 4, 6, 5, 6),
-            Block.box(10, 1, 4, 12, 5, 6)
+            Block.box(3, 8, 6, 5, 12, 8),
+            Block.box(2, 7, 2, 14, 8, 14),
+            Block.box(7, 14, 7, 9, 16, 9),
+            Block.box(7, 8, 7, 9, 12, 9),
+            Block.box(7, 8, 3, 9, 12, 5),
+            Block.box(11, 8, 6, 13, 12, 8),
+            Block.box(10, 8, 10, 12, 12, 12),
+            Block.box(4, 8, 10, 6, 12, 12),
+            Block.box(0, 0, 0, 16, 7, 16)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     private static final VoxelShape SHAPE_E =Stream.of(
-            Block.box(6, 1, 11, 8, 5, 13),
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(7, 8, 7, 9, 10, 9),
-            Block.box(7, 1, 7, 9, 5, 9),
-            Block.box(3, 1, 7, 5, 5, 9),
-            Block.box(6, 1, 3, 8, 5, 5),
-            Block.box(10, 1, 4, 12, 5, 6),
-            Block.box(10, 1, 10, 12, 5, 12)
+            Block.box(8, 8, 3, 10, 12, 5),
+            Block.box(2, 7, 2, 14, 8, 14),
+            Block.box(7, 14, 7, 9, 16, 9),
+            Block.box(7, 8, 7, 9, 12, 9),
+            Block.box(11, 8, 7, 13, 12, 9),
+            Block.box(8, 8, 11, 10, 12, 13),
+            Block.box(4, 8, 10, 6, 12, 12),
+            Block.box(4, 8, 4, 6, 12, 6),
+            Block.box(0, 0, 0, 16, 7, 16)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     private static final VoxelShape SHAPE_W =Stream.of(
-            Block.box(8, 1, 3, 10, 5, 5),
-            Block.box(2, 0, 2, 14, 1, 14),
-            Block.box(7, 8, 7, 9, 10, 9),
-            Block.box(7, 1, 7, 9, 5, 9),
-            Block.box(11, 1, 7, 13, 5, 9),
-            Block.box(8, 1, 11, 10, 5, 13),
-            Block.box(4, 1, 10, 6, 5, 12),
-            Block.box(4, 1, 4, 6, 5, 6)
+            Block.box(6, 8, 11, 8, 12, 13),
+            Block.box(2, 7, 2, 14, 8, 14),
+            Block.box(7, 14, 7, 9, 16, 9),
+            Block.box(7, 8, 7, 9, 12, 9),
+            Block.box(3, 8, 7, 5, 12, 9),
+            Block.box(6, 8, 3, 8, 12, 5),
+            Block.box(10, 8, 4, 12, 12, 6),
+            Block.box(10, 8, 10, 12, 12, 12),
+            Block.box(0, 0, 0, 16, 7, 16)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     @Override
