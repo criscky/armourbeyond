@@ -28,6 +28,7 @@ public class DataGenerators {
 
 
         gen.addProvider(new ModLootTables(gen));
+        gen.addProvider(new ModRecipeProvider(gen));
     }
 
 }
