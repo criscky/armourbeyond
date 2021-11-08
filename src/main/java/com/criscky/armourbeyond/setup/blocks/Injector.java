@@ -10,6 +10,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -26,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class Injector extends Block {
@@ -161,7 +163,7 @@ public class Injector extends Block {
         TileEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof InjectorTileEntity && player instanceof ServerPlayerEntity) {
             InjectorTileEntity te = (InjectorTileEntity) tileEntity;
-            NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
+            NetworkHooks.openGui((ServerPlayerEntity) player, te, pos);
         }
     }
 }

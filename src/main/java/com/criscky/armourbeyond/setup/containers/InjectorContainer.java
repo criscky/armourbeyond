@@ -9,8 +9,10 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIntArray;
-import net.minecraft.util.IntArray;
+
+import java.util.Objects;
 
 public class InjectorContainer extends Container {
     private final IInventory inventory;
@@ -19,13 +21,15 @@ public class InjectorContainer extends Container {
 
 
     public InjectorContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-        this(id, playerInventory, new InjectorTileEntity(), new IntArray(buffer.readByte()));
+        //this(id, playerInventory, new InjectorTileEntity(), new IntArray(buffer.readByte()));
+        this(id, playerInventory, getTileEntity(playerInventory, buffer));
     }
 
-    public InjectorContainer(int id, PlayerInventory playerInventory, InjectorTileEntity tileentity/*IInventory inventory*/, IIntArray fields) {
+    public InjectorContainer(int id, PlayerInventory playerInventory, InjectorTileEntity tileentity/*IInventory inventory, IIntArray fields*/) {
         super(ModContainerTypes.INJECTOR.get(), id);
         this.inventory = (IInventory)tileentity;
-        this.fields = fields;
+        //this.fields = fields;
+        this.fields = tileentity.GetFields();
         this.tileEntity = tileentity;
         this.addDataSlots(fields);
 
@@ -55,6 +59,7 @@ public class InjectorContainer extends Container {
             this.addSlot(new Slot(playerInventory, col, 7 + col * 18, 141));
         }
     }
+
 
     @Override
     public boolean stillValid(PlayerEntity pPlayer) {
@@ -106,10 +111,24 @@ public class InjectorContainer extends Container {
     }
 
     public int getProgressArrowScale() {
+
         int progress = fields.get(0);
         if (progress > 0) {
             return (int) Math.floor(progress * 24 / InjectorTileEntity.WORK_TIME);
         }
         return 0;
+    }
+
+
+
+
+    private static InjectorTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
+        Objects.requireNonNull(playerInv, "Player Inventory cannot be null.");
+        Objects.requireNonNull(data, "Packet Buffer cannot be null.");
+        final TileEntity te = playerInv.player.level.getBlockEntity(data.readBlockPos());
+        if (te instanceof InjectorTileEntity) {
+            return (InjectorTileEntity) te;
+        }
+        throw new IllegalStateException("Tile Entity Is Not Correct");
     }
 }

@@ -28,7 +28,6 @@ public class PlayerEvents {
     static String uuidToughness = "ca57b828-5ef5-48f9-9c13-e3688d423ea0";
 
 
-
     @SubscribeEvent
     public static void onPlayerJoin(EntityJoinWorldEvent event ){
         if(event.getEntity() instanceof PlayerEntity) {
@@ -123,7 +122,6 @@ public class PlayerEvents {
         Multimap<Attribute, AttributeModifier> attributesDefault = HashMultimap.create();
         attributesDefault.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString(uuidToughness), ArmourBeyond.MOD_ID+":toughness_modifier", value, AttributeModifier.Operation.ADDITION));
         return attributesDefault;
-
     }
 
 }

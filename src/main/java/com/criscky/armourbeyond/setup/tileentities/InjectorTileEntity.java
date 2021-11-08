@@ -16,7 +16,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
@@ -29,7 +29,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import javax.annotation.Nullable;
 import java.util.stream.IntStream;
 
-public class InjectorTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
+public class InjectorTileEntity extends LockableLootTileEntity implements ISidedInventory, ITickableTileEntity {
     public static final int WORK_TIME = 3 * 20;
 
     private NonNullList<ItemStack> items;
@@ -64,6 +64,11 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
         }
     };
 
+    public IIntArray GetFields(){
+        return fields;
+    }
+
+
     public InjectorTileEntity() {
         super(ModTileEntities.INJECTOR.get());
         this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
@@ -75,7 +80,6 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
         if (this.level == null || this.level.isClientSide) {
             return;
         }
-
         InjectorRecipe recipe = getRecipe();
         if (recipe != null) {
             doWork(recipe);
@@ -141,6 +145,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
         this.removeItem(3, 1);
         this.removeItem(4, 1);
         this.removeItem(5, 1);
+        this.setChanged();
     }
 
 
@@ -171,13 +176,15 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
 
     @Override
     protected Container createMenu(int pId, PlayerInventory pPlayer) {
-        return new InjectorContainer(pId, pPlayer, this, this.fields);
+        return new InjectorContainer(pId, pPlayer, this/*, this.fields*/);
     }
 
     @Override
     public int getContainerSize() {
         return 7;
     }
+
+
 
     @Override
     public boolean isEmpty() {
@@ -216,6 +223,15 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
         items.clear();
     }
 
+    @Override
+    protected NonNullList<ItemStack> getItems() {
+        return this.items;
+    }
+
+    @Override
+    protected void setItems(NonNullList<ItemStack> pItems) {
+        this.items = pItems;
+    }
 
 
     @Override
@@ -238,6 +254,7 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
     @Nullable
     @Override
     public SUpdateTileEntityPacket getUpdatePacket() {
+
         CompoundNBT tags = this.getUpdateTag();
         ItemStackHelper.saveAllItems(tags, this.items);
         return new SUpdateTileEntityPacket(this.worldPosition, 1, tags);
@@ -245,8 +262,11 @@ public class InjectorTileEntity extends LockableTileEntity implements ISidedInve
 
     @Override
     public CompoundNBT getUpdateTag() {
+
         CompoundNBT tags = super.getUpdateTag();
         tags.putInt("Progress", this.progress);
+        this.save(tags);
         return tags;
     }
+
 }
