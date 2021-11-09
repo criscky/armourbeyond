@@ -50,33 +50,43 @@ public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
                     pCombinedOverlay, lightLevel, 0.2f);
         }
         if(isValidToRender(pBlockEntity.getItem(1))){
-            renderItem(pBlockEntity.getItem(1), new double[] { PositionRender(FacingValue, 0.25d, 0.5d, true), this.y_base, PositionRender(FacingValue, 0.25d, 0.5d, false) },
+            double x = 0.25d;
+            double z = 0.5d;
+            renderItem(pBlockEntity.getItem(1), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
 
         }
         if(isValidToRender(pBlockEntity.getItem(2))){
-            renderItem(pBlockEntity.getItem(2), new double[] { PositionRender(FacingValue, 0.44d, 0.25d, true), this.y_base, PositionRender(FacingValue, 0.44d, 0.25d, false) },
+            double x = 0.44d;
+            double z = 0.25d;
+            renderItem(pBlockEntity.getItem(2), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
         if(isValidToRender(pBlockEntity.getItem(3))){
-            renderItem(pBlockEntity.getItem(3), new double[] { PositionRender(FacingValue, 0.68d, 0.31d, true), this.y_base, PositionRender(FacingValue, 0.68d, 0.31d, false) },
+            double x = 0.68d;
+            double z = 0.31d;
+            renderItem(pBlockEntity.getItem(3), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
         if(isValidToRender(pBlockEntity.getItem(4))){
-            renderItem(pBlockEntity.getItem(4), new double[] { PositionRender(FacingValue, 0.68d, 0.68d, true), this.y_base, PositionRender(FacingValue, 0.68d, 0.68d, false) },
+            double x = 0.68d;
+            double z = 0.68d;
+            renderItem(pBlockEntity.getItem(4), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
         if(isValidToRender(pBlockEntity.getItem(5))){
-            renderItem(pBlockEntity.getItem(5), new double[] { PositionRender(FacingValue, 0.44d, 0.75d, true), this.y_base,PositionRender(FacingValue, 0.44d, 0.75d, false) },
+            double x = 0.44d;
+            double z = 0.75d;
+            renderItem(pBlockEntity.getItem(5), new double[] { PositionRender(FacingValue, x, z, true), this.y_base,PositionRender(FacingValue, x, z, false) },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
         if(isValidToRender(pBlockEntity.getItem(6))){
-            renderItem(pBlockEntity.getItem(6), new double[] { 0.5d, 1.03d, 0.5d },
+            renderItem(pBlockEntity.getItem(6), new double[] { 0.5d, y_base+0.25d, 0.5d },
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
