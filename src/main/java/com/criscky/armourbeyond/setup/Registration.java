@@ -15,7 +15,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -30,8 +29,8 @@ public class Registration {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = create(ForgeRegistries.RECIPE_SERIALIZERS);
 
 
-    public static void register() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public static void register(IEventBus modEventBus) {
+
 
         BLOCKS.register(modEventBus);
         TILE_ENTITIES.register(modEventBus);
@@ -69,10 +68,8 @@ public class Registration {
             ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
 
         }
-
-
-
     }
+
 
 
 }

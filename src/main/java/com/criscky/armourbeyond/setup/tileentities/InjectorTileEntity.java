@@ -2,9 +2,11 @@ package com.criscky.armourbeyond.setup.tileentities;
 
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
+import com.criscky.armourbeyond.setup.ModNetworks;
 import com.criscky.armourbeyond.setup.ModRecipes;
 import com.criscky.armourbeyond.setup.ModTileEntities;
 import com.criscky.armourbeyond.setup.containers.InjectorContainer;
+import com.criscky.armourbeyond.setup.messages.InjectorMessage;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -145,7 +147,15 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
         this.removeItem(3, 1);
         this.removeItem(4, 1);
         this.removeItem(5, 1);
-        this.setChanged();
+        syncClient(output);
+    }
+
+    protected void syncClient(ItemStack item) {
+        if ((level == null) || level.isClientSide())
+            return;
+
+        System.out.println(this.worldPosition.toString());
+        ModNetworks.sendToAllTracking(ModNetworks.CHANNEL, new InjectorMessage(this.worldPosition, item), this);
     }
 
 
