@@ -1,10 +1,8 @@
 package com.criscky.armourbeyond.setup.client.tileentityrender;
 
-import com.criscky.armourbeyond.setup.ModBlocks;
-import com.criscky.armourbeyond.setup.blocks.Injector;
+import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import com.criscky.armourbeyond.setup.tileentities.InjectorTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -36,7 +34,7 @@ public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
 
     @Override
     public void render(InjectorTileEntity pBlockEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
-        if(pBlockEntity.isEmpty()){
+        if(pBlockEntity.isEmpty() || !ClientConfig.render_item_injector.get()){
             return;
         }
         ClientPlayerEntity player = mc.player;

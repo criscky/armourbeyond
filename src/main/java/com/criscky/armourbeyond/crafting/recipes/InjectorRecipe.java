@@ -176,7 +176,7 @@ public class InjectorRecipe implements IRecipe<IInventory> {
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for shapeless recipe");
             } else if (nonnulllist.size() > 6) {
-                throw new JsonParseException("Too many ingredients for shapeless recipe the max is 6");
+                throw new JsonParseException("Too many ingredients for the recipe the max is 6");
             } else {
                 ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
                 return new InjectorRecipe(pRecipeId, result, nonnulllist);

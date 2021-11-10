@@ -2,6 +2,7 @@ package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
+import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -12,8 +13,10 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,6 +49,9 @@ public class Registration {
         ModBlocks.register();
         ModItems.register();
         ModRecipes.register();
+
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, "armour-beyond-client.toml");
 
 
     }
