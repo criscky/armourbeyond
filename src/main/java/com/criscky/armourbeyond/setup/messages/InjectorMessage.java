@@ -16,6 +16,7 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 import java.util.function.Supplier;
 
 public class InjectorMessage {
+    private static InjectorTileEntity tileEntity1;
     ItemStack item;
     private BlockPos pos;
 
@@ -64,6 +65,7 @@ public class InjectorMessage {
                     tileEntity1.removeItem(3, 1);
                     tileEntity1.removeItem(4, 1);
                     tileEntity1.removeItem(5, 1);
+                    tileEntity1.GetFields().set(0, 0);
                 }
             }
         }

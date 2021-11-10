@@ -3,10 +3,12 @@ package com.criscky.armourbeyond.crafting.recipes;
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.setup.ModItems;
 import com.criscky.armourbeyond.setup.ModRecipes;
+import com.criscky.armourbeyond.setup.ModTags;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
@@ -72,26 +74,30 @@ public class InjectorRecipe implements IRecipe<IInventory> {
         boolean OkUpgrade = false;
 
         if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
-            if(getRank(pInv.getItem(0))==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
+            int rank = getRank(pInv.getItem(0));
+            if(rank ==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
                 OkUpgrade = true;
             }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == ModItems.ETERNITY_SHARD.get())){
                 OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==0 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_WOOD.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==1 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_STONE.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==2 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_IRON.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==3 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_GOLD.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==4 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_DIAMOND.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==5 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_EMERALD.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==6 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_NETHERITE.get()){
-                OkUpgrade = true;
-            }else if(getRank(pInv.getItem(0))==7 && getLevel(pInv.getItem(0))==10 && pInv.getItem(1).getItem() == ModItems.UPGRADE_ETERNAL.get()){
-                OkUpgrade = true;
+            }else if(getLevel(pInv.getItem(0))==10){
+                Item item1 = pInv.getItem(1).getItem();
+                if(rank == 0 && item1 == ModItems.UPGRADE_WOOD.get()){
+                    OkUpgrade = true;
+                }else if(rank == 1 && item1 == ModItems.UPGRADE_STONE.get()){
+                    OkUpgrade = true;
+                }else if(rank == 2 && item1 == ModItems.UPGRADE_IRON.get()){
+                    OkUpgrade = true;
+                }else if(rank == 3 && item1 == ModItems.UPGRADE_GOLD.get()){
+                    OkUpgrade = true;
+                }else if(rank == 4 && item1 == ModItems.UPGRADE_DIAMOND.get()){
+                    OkUpgrade = true;
+                }else if(rank == 5 && item1 == ModItems.UPGRADE_EMERALD.get()){
+                    OkUpgrade = true;
+                }else if(rank == 6 && item1 == ModItems.UPGRADE_NETHERITE.get()){
+                    OkUpgrade = true;
+                }else if(rank == 7 && item1 == ModItems.UPGRADE_ETERNAL.get()){
+                    OkUpgrade = true;
+                }
             }
         }else
             OkUpgrade = true;
@@ -102,29 +108,32 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     @Nonnull
     @Override
     public ItemStack assemble(IInventory pInv) {
-        if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
-            ItemStack item;
-            String rankString = new ResourceLocation(ArmourBeyond.MOD_ID, "rank").toString();
-            String levelString = new ResourceLocation(ArmourBeyond.MOD_ID, "level").toString();
-
-            item = pInv.getItem(0).copy();
-            CompoundNBT tag = item.getOrCreateTagElement("Rank");
-            if(tag.contains(rankString)){
-                if(tag.getInt(levelString)==10){
-                    tag.putInt(rankString, tag.getInt(rankString)+1);
-                    tag.putInt(levelString, 0);
-                }else{
-                    tag.putInt(levelString, tag.getInt(levelString)+1);
-                }
-
-            }else{
-                tag.putInt(rankString, 0);
-                tag.putInt(levelString, 0);
-            }
-
-            return item;
+        //if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
+        if(pInv.getItem(0).getItem().is(ModTags.Items.UPGRADABLE_ARMOR)) {
+            return RankUp(pInv.getItem(0).copy());
         }
             return this.result.copy();
+    }
+
+    public ItemStack RankUp(ItemStack item){
+        String rankString = new ResourceLocation(ArmourBeyond.MOD_ID, "rank").toString();
+        String levelString = new ResourceLocation(ArmourBeyond.MOD_ID, "level").toString();
+
+        CompoundNBT tag = item.getOrCreateTagElement("Rank");
+        if(tag.contains(rankString)){
+            if(tag.getInt(levelString)==10){
+                tag.putInt(rankString, tag.getInt(rankString)+1);
+                tag.putInt(levelString, 0);
+            }else{
+                tag.putInt(levelString, tag.getInt(levelString)+1);
+            }
+
+        }else{
+            tag.putInt(rankString, 0);
+            tag.putInt(levelString, 0);
+        }
+
+        return item;
     }
 
     @Override
