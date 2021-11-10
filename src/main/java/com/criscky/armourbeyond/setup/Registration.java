@@ -3,6 +3,7 @@ package com.criscky.armourbeyond.setup;
 import com.criscky.armourbeyond.ArmourBeyond;
 import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
 import com.criscky.armourbeyond.setup.configs.ClientConfig;
+import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -52,7 +53,7 @@ public class Registration {
 
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, "armour-beyond-client.toml");
-
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, "armour-beyond-common.toml");
 
     }
 

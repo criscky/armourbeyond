@@ -54,10 +54,10 @@ public class PlayerEvents {
 
 
     private static void UpdateAttributes(PlayerEntity player){
-        float toughness = getToughnessSlot(EquipmentSlotType.HEAD, player, 5F, 0.625F) +
-                getToughnessSlot(EquipmentSlotType.CHEST, player, 5F, 0.625F) +
-                getToughnessSlot(EquipmentSlotType.LEGS, player, 5F, 0.625F) +
-                getToughnessSlot(EquipmentSlotType.FEET, player, 5F, 0.625F);
+        float toughness = getToughnessSlot(EquipmentSlotType.HEAD, player, 5F) +
+                getToughnessSlot(EquipmentSlotType.CHEST, player, 5F) +
+                getToughnessSlot(EquipmentSlotType.LEGS, player, 5F) +
+                getToughnessSlot(EquipmentSlotType.FEET, player, 5F);
 
         float defense = getDefenseSlot(EquipmentSlotType.HEAD, player, 10) +
                 getDefenseSlot(EquipmentSlotType.CHEST, player, 20) +
@@ -96,10 +96,10 @@ public class PlayerEvents {
         }
     }
 
-    private static float getToughnessSlot(EquipmentSlotType slot, PlayerEntity player, float max, float multiplier){
+    private static float getToughnessSlot(EquipmentSlotType slot, PlayerEntity player, float max){
         if(!player.getItemBySlot(slot).isEmpty()) {
             float armortough = GetToughnessItem(player.getItemBySlot(slot).getItem());
-            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*multiplier, max-armortough), 0);
+            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*(max/8), max-armortough), 0);
         }else{
             return 0;
         }
