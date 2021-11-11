@@ -25,7 +25,6 @@ public class SendStatus extends  BaseCommand{
 
 
     private int execute(CommandSource pSource) throws CommandSyntaxException {
-        //
         ServerPlayerEntity pPlayer = pSource.getPlayerOrException();
         pSource.sendSuccess(new StringTextComponent(message(pPlayer)), false);
 
@@ -38,7 +37,7 @@ public class SendStatus extends  BaseCommand{
         message_return += "Chest: "+round(getDefenseSlot(EquipmentSlotType.CHEST, pPlayer, CommonConfig.defense_chestplate.get()), 2)+" Defense | "+round(getToughnessSlot(EquipmentSlotType.CHEST, pPlayer, CommonConfig.defense_chestplate.get()), 2)+" Toughness\n";
         message_return += "Legs: "+round(getDefenseSlot(EquipmentSlotType.LEGS, pPlayer, CommonConfig.defense_leggings.get()), 2)+" Defense | "+round(getToughnessSlot(EquipmentSlotType.LEGS, pPlayer, CommonConfig.toughness_leggings.get()), 2)+" Toughness\n";
         message_return += "Feet: "+round(getDefenseSlot(EquipmentSlotType.FEET, pPlayer, CommonConfig.defense_boot.get()), 2)+" Defense | "+round(getToughnessSlot(EquipmentSlotType.FEET, pPlayer, CommonConfig.toughness_boot.get()), 2)+" Toughness\n";
-        
+
         return message_return;
     }
 }
