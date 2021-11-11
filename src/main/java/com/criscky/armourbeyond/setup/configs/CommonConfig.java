@@ -18,10 +18,10 @@ public class CommonConfig {
 
     static {
         BUILDER.push("Max Defense");
-        defense_helmet = BUILDER.defineInRange("Helmet", 10f, 10f, 100f);
-        defense_chestplate = BUILDER.defineInRange("Chestplate", 20f, 10f, 100f);
-        defense_leggings = BUILDER.defineInRange("Leggings", 15f, 10f, 100f);
-        defense_boot = BUILDER.defineInRange("Boot", 10f, 10f, 100f);
+        defense_helmet = BUILDER.defineInRange("Helmet", 14f, 10f, 100f);
+        defense_chestplate = BUILDER.defineInRange("Chestplate", 28f, 10f, 100f);
+        defense_leggings = BUILDER.defineInRange("Leggings", 21f, 10f, 100f);
+        defense_boot = BUILDER.defineInRange("Boot", 14f, 10f, 100f);
         BUILDER.pop();
 
         BUILDER.push("Max Toughness");
