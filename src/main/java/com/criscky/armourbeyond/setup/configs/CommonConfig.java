@@ -18,17 +18,17 @@ public class CommonConfig {
 
     static {
         BUILDER.push("Max Defense");
-        defense_helmet = BUILDER.defineInRange("Helmet", 14f, 10f, 100f);
-        defense_chestplate = BUILDER.defineInRange("Chestplate", 28f, 10f, 100f);
-        defense_leggings = BUILDER.defineInRange("Leggings", 21f, 10f, 100f);
-        defense_boot = BUILDER.defineInRange("Boot", 14f, 10f, 100f);
+        defense_helmet = BUILDER.defineInRange("Helmet (Default: 14)", 14f, 10f, 100f);
+        defense_chestplate = BUILDER.defineInRange("Chestplate (Default: 28)", 28f, 10f, 100f);
+        defense_leggings = BUILDER.defineInRange("Leggings (Default: 21)", 21f, 10f, 100f);
+        defense_boot = BUILDER.defineInRange("Boot (Default: 14)", 14f, 10f, 100f);
         BUILDER.pop();
 
         BUILDER.push("Max Toughness");
-        toughness_helmet = BUILDER.defineInRange("Helmet", 5f, 5f, 50.0f);
-        toughness_chestplate = BUILDER.defineInRange("Chestplate", 5f, 5f, 50.0f);
-        toughness_leggings = BUILDER.defineInRange("Leggings", 5f, 5f, 50.0f);
-        toughness_boot = BUILDER.defineInRange("Boot", 5f, 5f, 50.0f);
+        toughness_helmet = BUILDER.defineInRange("Helmet (Default: 5)", 5f, 5f, 50.0f);
+        toughness_chestplate = BUILDER.defineInRange("Chestplate (Default: 5)", 5f, 5f, 50.0f);
+        toughness_leggings = BUILDER.defineInRange("Leggings (Default: 5)", 5f, 5f, 50.0f);
+        toughness_boot = BUILDER.defineInRange("Boot (Default: 5)", 5f, 5f, 50.0f);
         BUILDER.pop();
 
         SPEC = BUILDER.build();
