@@ -10,6 +10,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -26,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class Injector extends Block {
@@ -164,4 +166,21 @@ public class Injector extends Block {
         }
     }
 
+
+    @Override
+    public void animateTick(BlockState pState, World pLevel, BlockPos pPos, Random pRand) {
+        if(pLevel.getBlockEntity(pPos) instanceof InjectorTileEntity){
+            InjectorTileEntity tileEntity1 = (InjectorTileEntity) pLevel.getBlockEntity(pPos);
+            if(tileEntity1.GetFields().get(0)>0){
+                //float chance = 0.75f;
+                //if(chance < pRand.nextFloat()) {
+                    pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pPos.getX() + pRand.nextDouble(),
+                            pPos.getY() + 0.5D, pPos.getZ() + pRand.nextDouble(),
+                            0d,0.05d,0d);
+                //}
+            }
+        }
+
+        super.animateTick(pState, pLevel, pPos, pRand);
+    }
 }
