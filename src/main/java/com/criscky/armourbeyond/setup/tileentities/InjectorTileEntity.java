@@ -27,6 +27,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.stream.IntStream;
@@ -136,8 +137,10 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
     private void finishWork(InjectorRecipe recipe, ItemStack current, ItemStack output) {
         if (!current.isEmpty()) {
             current.grow(output.getCount());
+            syncClient(current, 6);
         } else {
             setItem(6, output);
+            syncClient(output, 6);
         }
 
         progress = 0;
@@ -147,15 +150,13 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
         this.removeItem(3, 1);
         this.removeItem(4, 1);
         this.removeItem(5, 1);
-        syncClient(output);
     }
 
-    protected void syncClient(ItemStack item) {
+    protected void syncClient(ItemStack item, int pIndex) {
         if ((level == null) || level.isClientSide())
             return;
 
-        System.out.println(this.worldPosition.toString());
-        ModNetworks.sendToAllTracking(ModNetworks.CHANNEL, new InjectorMessage(this.worldPosition, item), this);
+        ModNetworks.sendToAllTracking(ModNetworks.CHANNEL, new InjectorMessage(this.worldPosition, item, pIndex), this);
     }
 
 
@@ -165,12 +166,12 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
 
 
     @Override
-    public int[] getSlotsForFace(Direction pSide) {
+    public int[] getSlotsForFace(@NotNull Direction pSide) {
         return new int[0];
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
+    public boolean canPlaceItemThroughFace(int pIndex, @NotNull ItemStack pItemStack, @Nullable Direction pDirection) {
         return this.canPlaceItem(pIndex, pItemStack);
     }
 
@@ -218,6 +219,7 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
 
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
+        System.out.println("aaaaaaaaa");
         items.set(pIndex, pStack);
     }
 

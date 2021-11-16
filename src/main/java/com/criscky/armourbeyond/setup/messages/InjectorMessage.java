@@ -16,9 +16,9 @@ import net.minecraftforge.fml.network.NetworkEvent.Context;
 import java.util.function.Supplier;
 
 public class InjectorMessage {
-    private static InjectorTileEntity tileEntity1;
     ItemStack item;
     private BlockPos pos;
+    private int id;
 
     private boolean failed;
 
@@ -29,20 +29,23 @@ public class InjectorMessage {
         this.failed = failed;
     }
 
-    public InjectorMessage(BlockPos pos, ItemStack item){
+    public InjectorMessage(BlockPos pos, ItemStack item, int id){
         this.pos = pos;
         this.item = item;
+        this.id = id;
     }
 
     public static void encode(InjectorMessage message, PacketBuffer buffer){
         buffer.writeItem(message.item);
         buffer.writeBlockPos(message.pos);
+        buffer.writeInt(message.id);
     }
     public static InjectorMessage decode( PacketBuffer buffer){
         try {
             ItemStack item = buffer.readItem();
             BlockPos pos = buffer.readBlockPos();
-            return new InjectorMessage(pos, item);
+            int id = buffer.readInt();
+            return new InjectorMessage(pos, item, id);
         }
         catch (IndexOutOfBoundsException e) {
             return new InjectorMessage(true);
@@ -58,7 +61,7 @@ public class InjectorMessage {
                 TileEntity tileEntity = world.getBlockEntity(msg.pos);
                 if (tileEntity instanceof InjectorTileEntity) {
                     InjectorTileEntity tileEntity1 = (InjectorTileEntity) tileEntity;
-                    tileEntity1.setItem(6, msg.item);
+                    tileEntity1.setItem(msg.id, msg.item);
                     tileEntity1.removeItem(0, 1);
                     tileEntity1.removeItem(1, 1);
                     tileEntity1.removeItem(2, 1);
