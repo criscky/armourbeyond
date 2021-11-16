@@ -25,6 +25,7 @@ public class InjectorMessage {
     public InjectorMessage(){
 
     }
+
     private InjectorMessage(boolean failed) {
         this.failed = failed;
     }

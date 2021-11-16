@@ -176,7 +176,7 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
+    public boolean canTakeItemThroughFace(int pIndex, @NotNull ItemStack pStack, Direction pDirection) {
         return pIndex == 6;
     }
 
@@ -219,7 +219,6 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
 
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
-        System.out.println("aaaaaaaaa");
         items.set(pIndex, pStack);
     }
 
