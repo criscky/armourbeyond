@@ -25,6 +25,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -78,8 +79,9 @@ public class Injector extends Block {
             Block.box(0, 0, 0, 16, 7, 16)
     ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
+    @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
+    public VoxelShape getShape(@NotNull BlockState pState, @NotNull IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
         switch (pState.getValue(FACING)) {
             case SOUTH:
                 return SHAPE_S;
