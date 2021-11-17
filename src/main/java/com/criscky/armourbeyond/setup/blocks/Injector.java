@@ -174,12 +174,9 @@ public class Injector extends Block {
         if(pLevel.getBlockEntity(pPos) instanceof InjectorTileEntity){
             InjectorTileEntity tileEntity1 = (InjectorTileEntity) pLevel.getBlockEntity(pPos);
             if(tileEntity1.GetFields().get(0)>0){
-                //float chance = 0.75f;
-                //if(chance < pRand.nextFloat()) {
-                    pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pPos.getX() + pRand.nextDouble(),
-                            pPos.getY() + 0.5D, pPos.getZ() + pRand.nextDouble(),
-                            0d,0.05d,0d);
-                //}
+                pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pPos.getX() + pRand.nextDouble(),
+                        pPos.getY() + 0.5D, pPos.getZ() + pRand.nextDouble(),
+                        0d,0.05d,0d);
             }
         }
 
