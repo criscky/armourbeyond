@@ -23,7 +23,7 @@ import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
 public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
-    private Minecraft mc = Minecraft.getInstance();
+    private final Minecraft mc = Minecraft.getInstance();
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     final double  y_base = 0.78d;
 
