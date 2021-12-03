@@ -22,10 +22,10 @@ import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 
-public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
-    private final Minecraft mc = Minecraft.getInstance();
+public class InjectorRenderer extends TileEntityRenderer<InjectorTileEntity> {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    final double  y_base = 0.78d;
+    final double y_base = 0.78d;
+    private final Minecraft mc = Minecraft.getInstance();
 
 
     public InjectorRenderer(TileEntityRendererDispatcher rendererDispatcherIn) {
@@ -34,7 +34,7 @@ public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
 
     @Override
     public void render(InjectorTileEntity pBlockEntity, float pPartialTicks, MatrixStack pMatrixStack, IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
-        if(pBlockEntity.isEmpty() || !ClientConfig.render_item_injector.get()){
+        if (pBlockEntity.isEmpty() || !ClientConfig.render_item_injector.get()) {
             return;
         }
         ClientPlayerEntity player = mc.player;
@@ -42,49 +42,49 @@ public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
         Direction FacingValue = pBlockEntity.getBlockState().getValue(FACING);
 
 
-        if(isValidToRender(pBlockEntity.getItem(0))){
-            renderItem(pBlockEntity.getItem(0), new double[] { 0.5d, this.y_base, 0.5d },
+        if (isValidToRender(pBlockEntity.getItem(0))) {
+            renderItem(pBlockEntity.getItem(0), new double[]{0.5d, this.y_base, 0.5d},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
-        if(isValidToRender(pBlockEntity.getItem(1))){
+        if (isValidToRender(pBlockEntity.getItem(1))) {
             double x = 0.25d;
             double z = 0.5d;
-            renderItem(pBlockEntity.getItem(1), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
+            renderItem(pBlockEntity.getItem(1), new double[]{PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false)},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
 
         }
-        if(isValidToRender(pBlockEntity.getItem(2))){
+        if (isValidToRender(pBlockEntity.getItem(2))) {
             double x = 0.44d;
             double z = 0.25d;
-            renderItem(pBlockEntity.getItem(2), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
+            renderItem(pBlockEntity.getItem(2), new double[]{PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false)},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
-        if(isValidToRender(pBlockEntity.getItem(3))){
+        if (isValidToRender(pBlockEntity.getItem(3))) {
             double x = 0.68d;
             double z = 0.31d;
-            renderItem(pBlockEntity.getItem(3), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
+            renderItem(pBlockEntity.getItem(3), new double[]{PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false)},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
-        if(isValidToRender(pBlockEntity.getItem(4))){
+        if (isValidToRender(pBlockEntity.getItem(4))) {
             double x = 0.68d;
             double z = 0.68d;
-            renderItem(pBlockEntity.getItem(4), new double[] { PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false) },
+            renderItem(pBlockEntity.getItem(4), new double[]{PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false)},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
-        if(isValidToRender(pBlockEntity.getItem(5))){
+        if (isValidToRender(pBlockEntity.getItem(5))) {
             double x = 0.44d;
             double z = 0.75d;
-            renderItem(pBlockEntity.getItem(5), new double[] { PositionRender(FacingValue, x, z, true), this.y_base,PositionRender(FacingValue, x, z, false) },
+            renderItem(pBlockEntity.getItem(5), new double[]{PositionRender(FacingValue, x, z, true), this.y_base, PositionRender(FacingValue, x, z, false)},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
-        if(isValidToRender(pBlockEntity.getItem(6))){
-            renderItem(pBlockEntity.getItem(6), new double[] { 0.5d, y_base+0.25d, 0.5d },
+        if (isValidToRender(pBlockEntity.getItem(6))) {
+            renderItem(pBlockEntity.getItem(6), new double[]{0.5d, y_base + 0.25d, 0.5d},
                     Vector3f.YP.rotationDegrees(180f - player.yBob), pMatrixStack, pBuffer, pPartialTicks,
                     pCombinedOverlay, lightLevel, 0.2f);
         }
@@ -111,11 +111,11 @@ public class InjectorRenderer  extends TileEntityRenderer<InjectorTileEntity> {
         return LightTexture.pack(bLight, sLight);
     }
 
-    public boolean isValidToRender(ItemStack item){
+    public boolean isValidToRender(ItemStack item) {
         return !(item.equals(ItemStack.EMPTY) || item.getItem().equals(Items.AIR));
     }
 
-    public double PositionRender(Direction pDirection, double x, double z, boolean isx){
+    public double PositionRender(Direction pDirection, double x, double z, boolean isx) {
         switch (pDirection) {
             case SOUTH:
                 return isx ? 1d - z : 1d - x;
