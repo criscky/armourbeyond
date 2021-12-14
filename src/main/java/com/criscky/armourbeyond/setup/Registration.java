@@ -22,12 +22,18 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Registration {
+    private static final Logger LOGGER = LogManager.getLogger();
+
+
     public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = create(ForgeRegistries.TILE_ENTITIES);
     public static final DeferredRegister<ContainerType<?>> CONTAINERS = create(ForgeRegistries.CONTAINERS);
@@ -36,7 +42,8 @@ public class Registration {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = create(ForgeRegistries.RECIPE_SERIALIZERS);
 
 
-    public static void register(IEventBus modEventBus) {
+    public static void register() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
         BLOCKS.register(modEventBus);
@@ -47,10 +54,13 @@ public class Registration {
         RECIPE_SERIALIZERS.register(modEventBus);
 
 
+
+        LOGGER.info("RegisterBlocks");
+        ModBlocks.register();
+        LOGGER.info("RegisterBlocksOK");
         ModContainerTypes.register();
         ModTileEntities.register();
         ModItemGroup.register();
-        ModBlocks.register();
         ModItems.register();
         ModRecipes.register();
 
@@ -66,6 +76,12 @@ public class Registration {
     }
 
 
+    /*@Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static final class InitBlock{
+        @SubscribeEvent
+        public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
+        }
+    }*/
 
     @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class Client {
@@ -73,6 +89,7 @@ public class Registration {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
             //RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());

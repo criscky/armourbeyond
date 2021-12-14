@@ -14,6 +14,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> INJECTOR = register("injector", () -> new Injector());
 
 
+    static void register(){}
+
     private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block){
         return Registration.BLOCKS.register(name, block);
     }
@@ -24,5 +26,4 @@ public class ModBlocks {
         return ret;
     }
 
-    static void register(){}
 }

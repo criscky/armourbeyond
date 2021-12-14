@@ -10,7 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod("armourbeyond")
+@Mod(ArmourBeyond.MOD_ID)
 public class ArmourBeyond
 {
     // Directly reference a log4j logger.
@@ -20,11 +20,11 @@ public class ArmourBeyond
     public ArmourBeyond() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(this::commonSetup);
 
 
-        Registration.register(modEventBus);
+        Registration.register();
         MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::commonSetup);
     }
 
 
