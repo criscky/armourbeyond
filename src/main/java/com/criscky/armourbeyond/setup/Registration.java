@@ -89,7 +89,7 @@ public class Registration {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("RegisterScreen");
+            //LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
             //RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());

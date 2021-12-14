@@ -22,6 +22,7 @@ public class ArmourBeyond
 
 
 
+        LOGGER.info("Register");
         Registration.register();
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::commonSetup);
