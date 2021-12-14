@@ -2,7 +2,6 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = 'https://maven.blamejared.com' }
         mavenCentral()
     }
     dependencies {
@@ -93,12 +92,6 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
-    maven {
-        url "https://cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
 }
 
 dependencies {
@@ -108,9 +101,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.16.3:7.+:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.3:7.+")
 
-    runtimeOnly fg.deobf("com.blamejared.crafttweaker:CraftTweaker-1.16.5:7.1.2.455")
 
-    implementation fg.deobf("curse.maven:clabar-317642:3240083")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

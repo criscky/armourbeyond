@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.setup.messages.InjectorMessage;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -20,7 +20,7 @@ public class ModNetworks {
     protected static String NETWORK_VERSION = "0.1";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(ArmourBeyond.MOD_ID, "network"),
+            new ResourceLocation(armourbeyond.MOD_ID, "network"),
             () -> NETWORK_VERSION, version -> version.equals(NETWORK_VERSION),
             version -> version.equals(NETWORK_VERSION));
 

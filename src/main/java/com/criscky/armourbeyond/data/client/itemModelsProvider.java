@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.data.client;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class itemModelsProvider extends ItemModelProvider {
 
     public itemModelsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ArmourBeyond.MOD_ID, existingFileHelper);
+        super(generator, armourbeyond.MOD_ID, existingFileHelper);
     }
 
 

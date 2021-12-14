@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.integration.jei;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModBlocks;
 import com.criscky.armourbeyond.setup.ModRecipes;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class IntegrationJEI implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(ArmourBeyond.MOD_ID, "jei_plugin");
+        return new ResourceLocation(armourbeyond.MOD_ID, "jei_plugin");
     }
 
     @Override

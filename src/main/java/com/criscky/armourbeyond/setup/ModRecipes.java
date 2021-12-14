@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -13,7 +13,7 @@ public class ModRecipes {
     public static final class Types {
         /*public static final IRecipeType<InjectorRecipe> INJECTION = IRecipeType.register(
                 ArmourBeyond.MOD_ID + ":injection");*/
-        public static final IRecipeType<InjectorRecipe> INJECTION = registerType(new ResourceLocation(ArmourBeyond.MOD_ID, "injection"));
+        public static final IRecipeType<InjectorRecipe> INJECTION = registerType(new ResourceLocation(armourbeyond.MOD_ID, "injection"));
 
         private Types() {}
     }

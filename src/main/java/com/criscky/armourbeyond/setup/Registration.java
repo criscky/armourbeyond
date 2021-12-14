@@ -1,24 +1,17 @@
 package com.criscky.armourbeyond.setup;
 
-import com.criscky.armourbeyond.ArmourBeyond;
-import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -72,7 +65,7 @@ public class Registration {
 
 
     private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
-        return DeferredRegister.create(registry, ArmourBeyond.MOD_ID);
+        return DeferredRegister.create(registry, armourbeyond.MOD_ID);
     }
 
 
@@ -83,13 +76,13 @@ public class Registration {
         }
     }*/
 
-    @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+    @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class Client {
         private Client() {}
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            //LOGGER.info("RegisterScreen");
+            LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
             //RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());

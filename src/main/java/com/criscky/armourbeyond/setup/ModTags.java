@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
@@ -13,7 +13,7 @@ public class ModTags {
     public static class Blocks {
 
         private static Tags.IOptionalNamedTag<Block> createTag(String name) {
-            return BlockTags.createOptional(new ResourceLocation(ArmourBeyond.MOD_ID, name));
+            return BlockTags.createOptional(new ResourceLocation(armourbeyond.MOD_ID, name));
         }
 
         private static Tags.IOptionalNamedTag<Block> createForgeTag(String name) {
@@ -26,7 +26,7 @@ public class ModTags {
         public static final Tags.IOptionalNamedTag<Item> UPGRADABLE_ARMOR = createTag("upgradable_armor");
 
         private static Tags.IOptionalNamedTag<Item> createTag(String name) {
-            return ItemTags.createOptional(new ResourceLocation(ArmourBeyond.MOD_ID, name));
+            return ItemTags.createOptional(new ResourceLocation(armourbeyond.MOD_ID, name));
         }
 
         private static Tags.IOptionalNamedTag<Item> createForgeTag(String name) {

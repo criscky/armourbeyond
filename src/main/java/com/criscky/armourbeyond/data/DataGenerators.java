@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.data;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.data.client.blockStateProvider;
 import com.criscky.armourbeyond.data.client.itemModelsProvider;
 import net.minecraft.data.DataGenerator;
@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
-@Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
     private DataGenerators() {}
 

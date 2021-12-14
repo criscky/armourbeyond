@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.data;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -15,13 +15,13 @@ import javax.annotation.Nullable;
 
 public class ModTagProvider extends ItemTagsProvider {
     public ModTagProvider(DataGenerator pGenerator, BlockTagsProvider pBlockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pGenerator, pBlockTagsProvider, ArmourBeyond.MOD_ID, existingFileHelper);
+        super(pGenerator, pBlockTagsProvider, armourbeyond.MOD_ID, existingFileHelper);
     }
 
 
     @Override
     protected void addTags() {
-        ITag.INamedTag<Item> ArmorTag = ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString());
+        ITag.INamedTag<Item> ArmorTag = ItemTags.bind(new ResourceLocation(armourbeyond.MOD_ID, "upgradable_armor").toString());
 
 
         tag(ArmorTag).add(Items.LEATHER_HELMET);

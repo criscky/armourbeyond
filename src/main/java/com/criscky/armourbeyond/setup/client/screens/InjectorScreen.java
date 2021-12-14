@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup.client.screens;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.setup.containers.InjectorContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class InjectorScreen extends ContainerScreen<InjectorContainer> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ArmourBeyond.MOD_ID, "textures/gui/injector.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(armourbeyond.MOD_ID, "textures/gui/injector.png");
 
     public InjectorScreen(InjectorContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title);

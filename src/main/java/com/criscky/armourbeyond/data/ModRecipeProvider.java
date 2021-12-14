@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.data;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.setup.ModBlocks;
 import com.criscky.armourbeyond.setup.ModItems;
 import net.minecraft.data.DataGenerator;
@@ -34,7 +34,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(consumer, modId("injectorcrafting"));
     }
     private static ResourceLocation modId(String path) {
-        return new ResourceLocation(ArmourBeyond.MOD_ID, path);
+        return new ResourceLocation(armourbeyond.MOD_ID, path);
     }
 
 }

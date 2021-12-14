@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.events;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.Helper;
 import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import com.google.common.collect.HashMultimap;
@@ -21,7 +21,7 @@ import java.util.UUID;
 import static com.criscky.armourbeyond.Helper.getDefenseSlot;
 import static com.criscky.armourbeyond.Helper.getToughnessSlot;
 
-@Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerEvents {
     static String uuidDefense = "d4238af0-7d38-4331-bb3f-a9164b506965";
     static String uuidToughness = "ca57b828-5ef5-48f9-9c13-e3688d423ea0";
@@ -81,12 +81,12 @@ public class PlayerEvents {
 
     protected static Multimap<Attribute, AttributeModifier> createAttributeMapDefense(double value) {
         Multimap<Attribute, AttributeModifier> attributesDefault = HashMultimap.create();
-        attributesDefault.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString(uuidDefense), ArmourBeyond.MOD_ID+":defense_modifier", value, AttributeModifier.Operation.ADDITION));
+        attributesDefault.put(Attributes.ARMOR, new AttributeModifier(UUID.fromString(uuidDefense), armourbeyond.MOD_ID+":defense_modifier", value, AttributeModifier.Operation.ADDITION));
         return attributesDefault;
     }
     protected static Multimap<Attribute, AttributeModifier> createAttributeMapToughness(double value) {
         Multimap<Attribute, AttributeModifier> attributesDefault = HashMultimap.create();
-        attributesDefault.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString(uuidToughness), ArmourBeyond.MOD_ID+":toughness_modifier", value, AttributeModifier.Operation.ADDITION));
+        attributesDefault.put(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString(uuidToughness), armourbeyond.MOD_ID+":toughness_modifier", value, AttributeModifier.Operation.ADDITION));
         return attributesDefault;
     }
 

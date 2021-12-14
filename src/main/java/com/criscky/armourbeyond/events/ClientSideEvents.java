@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.events;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import static com.criscky.armourbeyond.Helper.getLevel;
 import static com.criscky.armourbeyond.Helper.getRank;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ClientSideEvents {
     @SubscribeEvent
     public static void AddToolTip(ItemTooltipEvent event){

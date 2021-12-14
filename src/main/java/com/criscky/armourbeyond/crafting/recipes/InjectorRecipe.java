@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.crafting.recipes;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.setup.ModItems;
 import com.criscky.armourbeyond.setup.ModRecipes;
 import com.criscky.armourbeyond.setup.ModTags;
@@ -73,7 +73,7 @@ public class InjectorRecipe implements IRecipe<IInventory> {
 
         boolean OkUpgrade = false;
 
-        if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(ArmourBeyond.MOD_ID, "upgradable_armor").toString()))) {
+        if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(armourbeyond.MOD_ID, "upgradable_armor").toString()))) {
             int rank = getRank(pInv.getItem(0));
             if(rank ==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
                 OkUpgrade = true;
@@ -116,8 +116,8 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     }
 
     public ItemStack RankUp(ItemStack item){
-        String rankString = new ResourceLocation(ArmourBeyond.MOD_ID, "rank").toString();
-        String levelString = new ResourceLocation(ArmourBeyond.MOD_ID, "level").toString();
+        String rankString = new ResourceLocation(armourbeyond.MOD_ID, "rank").toString();
+        String levelString = new ResourceLocation(armourbeyond.MOD_ID, "level").toString();
 
         CompoundNBT tag = item.getOrCreateTagElement("Rank");
         if(tag.contains(rankString)){

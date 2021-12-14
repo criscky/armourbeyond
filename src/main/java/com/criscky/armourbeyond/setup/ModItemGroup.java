@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 public class ModItemGroup extends ItemGroup {
 
     public static final ModItemGroup ARMOUR_BEYOND = new ModItemGroup(ItemGroup.TABS.length,
-            ArmourBeyond.MOD_ID);
+            armourbeyond.MOD_ID);
 
     public ModItemGroup(int index, String label) {
         super(index, label);

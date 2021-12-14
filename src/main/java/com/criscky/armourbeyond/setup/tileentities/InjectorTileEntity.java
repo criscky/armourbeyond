@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.setup.tileentities;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModNetworks;
 import com.criscky.armourbeyond.setup.ModRecipes;
@@ -182,7 +182,7 @@ public class InjectorTileEntity extends LockableLootTileEntity implements ISided
 
     @Override
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container."+ ArmourBeyond.MOD_ID +".injector");
+        return new TranslationTextComponent("container."+ armourbeyond.MOD_ID +".injector");
     }
 
     @Override

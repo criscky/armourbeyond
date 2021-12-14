@@ -1,6 +1,6 @@
 package com.criscky.armourbeyond.integration.jei;
 
-import com.criscky.armourbeyond.ArmourBeyond;
+import com.criscky.armourbeyond.armourbeyond;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModBlocks;
 import mezz.jei.api.constants.VanillaTypes;
@@ -14,8 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public class InjectorRecipeCategory implements IRecipeCategory<InjectorRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(ArmourBeyond.MOD_ID, "injector");
-    public final static ResourceLocation TEXTURE = new ResourceLocation(ArmourBeyond.MOD_ID, "textures/gui/injector.png");
+    public final static ResourceLocation UID = new ResourceLocation(armourbeyond.MOD_ID, "injector");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(armourbeyond.MOD_ID, "textures/gui/injector.png");
 
     private final IDrawable background;
     private final IDrawable icon;
