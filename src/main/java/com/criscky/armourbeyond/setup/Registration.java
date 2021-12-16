@@ -52,9 +52,7 @@ public class Registration {
 
 
 
-        LOGGER.info("RegisterBlocks");
         ModBlocks.register();
-        LOGGER.info("RegisterBlocksOK");
         ModContainerTypes.register();
         ModTileEntities.register();
         ModItemGroup.register();
@@ -71,14 +69,6 @@ public class Registration {
     private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
         return DeferredRegister.create(registry, armourbeyond.MOD_ID);
     }
-
-
-    /*@Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static final class InitBlock{
-        @SubscribeEvent
-        public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
-        }
-    }*/
 
     @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class Client {
