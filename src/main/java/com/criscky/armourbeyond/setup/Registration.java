@@ -1,9 +1,12 @@
 package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.armourbeyond;
+import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
 import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -12,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -85,8 +89,8 @@ public class Registration {
             LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
-            //RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
-            //ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
+            RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
+            ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
 
         }
     }
