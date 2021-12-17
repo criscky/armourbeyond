@@ -23,6 +23,7 @@ public class InjectorScreen extends ContainerScreen<InjectorContainer> {
         this.renderTooltip(matrixStack, x, y);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void renderBg(MatrixStack matrixStack, float partialTicks, int x, int y) {
         if (minecraft == null) {
