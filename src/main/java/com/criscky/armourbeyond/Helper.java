@@ -56,8 +56,8 @@ public class Helper {
 
     public static float getToughnessSlot(EquipmentSlotType slot, PlayerEntity player, double max){
         if(!player.getItemBySlot(slot).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(slot).getItem());
-            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*(max/8), max-armortough), 0);
+            float armor_toughness = GetToughnessItem(player.getItemBySlot(slot).getItem());
+            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*(max/8), max-armor_toughness), 0);
         }else{
             return 0;
         }
