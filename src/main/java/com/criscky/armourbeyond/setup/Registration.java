@@ -28,7 +28,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Registration {
-    private static final Logger LOGGER = LogManager.getLogger();
 
 
     public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
@@ -76,7 +75,6 @@ public class Registration {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
             RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
