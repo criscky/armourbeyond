@@ -56,6 +56,10 @@ public class InjectorRecipe implements IRecipe<IInventory> {
         resultArmor = ItemStack.EMPTY;
     }
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
 
     @Override
     public boolean matches(IInventory pInv, World pLevel) {
