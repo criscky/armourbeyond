@@ -38,10 +38,10 @@ public class Helper {
 
     public static float getDefenseSlot(EquipmentSlotType slot, PlayerEntity player, double max){
         if(!player.getItemBySlot(slot).isEmpty()) {
-            float armordefense = GetDefenseItem(player.getItemBySlot(slot).getItem());
+            float armor_defense = GetDefenseItem(player.getItemBySlot(slot).getItem());
             return (float) Math.max(Math.min(((getRank(player.getItemBySlot(slot)))*10 +
                     (getLevel(player.getItemBySlot(slot))))
-                    *(max/90), max-armordefense), 0);
+                    *(max/90), max-armor_defense), 0);
         }else{
             return 0;
         }
@@ -56,8 +56,8 @@ public class Helper {
 
     public static float getToughnessSlot(EquipmentSlotType slot, PlayerEntity player, double max){
         if(!player.getItemBySlot(slot).isEmpty()) {
-            float armortough = GetToughnessItem(player.getItemBySlot(slot).getItem());
-            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*(max/8), max-armortough), 0);
+            float armor_toughness = GetToughnessItem(player.getItemBySlot(slot).getItem());
+            return (float) Math.max(Math.min((getRank(player.getItemBySlot(slot)))*(max/8), max-armor_toughness), 0);
         }else{
             return 0;
         }

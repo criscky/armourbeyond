@@ -21,19 +21,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
-import java.util.Random;
 import java.util.stream.IntStream;
 
 import static com.criscky.armourbeyond.Helper.getLevel;
 import static com.criscky.armourbeyond.Helper.getRank;
 
 public class InjectorRecipe implements IRecipe<IInventory> {
-    private static final Logger LOGGER = LogManager.getLogger();
-    Random rand = new Random();
+    //Random rand = new Random();
 
     private final ResourceLocation id;
     private final String group;
@@ -43,7 +39,7 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     private final IRecipeSerializer<?> serializer;
 
 
-    private final ItemStack resultArmor;
+    //private final ItemStack resultArmor;
 
     public InjectorRecipe(ResourceLocation pId, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
         this.id = pId;
@@ -53,7 +49,7 @@ public class InjectorRecipe implements IRecipe<IInventory> {
         this.result = pResult;
         this.ingredients = pIngredients;
 
-        resultArmor = ItemStack.EMPTY;
+        //resultArmor = ItemStack.EMPTY;
     }
 
     @Override
@@ -63,7 +59,7 @@ public class InjectorRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory pInv, World pLevel) {
-        RecipeItemHelper recipeitemhelper = new RecipeItemHelper();
+        //RecipeItemHelper recipeitemhelper = new RecipeItemHelper();
         java.util.List<ItemStack> inputs = new java.util.ArrayList<>();
         int i = 0;
 

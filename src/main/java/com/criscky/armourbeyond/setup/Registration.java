@@ -1,9 +1,12 @@
 package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.armourbeyond;
+import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
 import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -12,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -20,11 +24,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Registration {
-    private static final Logger LOGGER = LogManager.getLogger();
 
 
     public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
@@ -48,9 +49,7 @@ public class Registration {
 
 
 
-        LOGGER.info("RegisterBlocks");
         ModBlocks.register();
-        LOGGER.info("RegisterBlocksOK");
         ModContainerTypes.register();
         ModTileEntities.register();
         ModItemGroup.register();
@@ -68,25 +67,16 @@ public class Registration {
         return DeferredRegister.create(registry, armourbeyond.MOD_ID);
     }
 
-
-    /*@Mod.EventBusSubscriber(modid = ArmourBeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static final class InitBlock{
-        @SubscribeEvent
-        public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
-        }
-    }*/
-
     @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = armourbeyond.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static final class Client {
         private Client() {}
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("RegisterScreen");
             ModContainerTypes.registerScreens(event);
 
-            //RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
-            //ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
+            RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
+            ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
 
         }
     }
