@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "tag": "armourbeyond:upgradable_armor"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    },
+    {
+      "item": "armourbeyond:upgradenetherite"
+    }
+  ],
+  "result":"armourbeyond:devitem2",
+  "count": 1
+}

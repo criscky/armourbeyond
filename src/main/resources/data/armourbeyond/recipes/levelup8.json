@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "tag": "armourbeyond:upgradable_armor"
+    },
+    {
+      "item": "armourbeyond:upgradeeternal"
+    },
+    {
+      "item": "armourbeyond:upgradeeternal"
+    },
+    {
+      "item": "armourbeyond:upgradeeternal"
+    },
+    {
+      "item": "armourbeyond:upgradeeternal"
+    },
+    {
+      "item": "armourbeyond:upgradeeternal"
+    }
+  ],
+  "result":"armourbeyond:devitem2",
+  "count": 1
+}

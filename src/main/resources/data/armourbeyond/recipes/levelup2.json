@@ -1,0 +1,25 @@
+{
+  "type": "armourbeyond:injection",
+  "ingredients": [
+    {
+      "tag": "armourbeyond:upgradable_armor"
+    },
+    {
+      "item": "armourbeyond:upgradestone"
+    },
+    {
+      "item": "armourbeyond:upgradestone"
+    },
+    {
+      "item": "armourbeyond:upgradestone"
+    },
+    {
+      "item": "armourbeyond:upgradestone"
+    },
+    {
+      "item": "armourbeyond:upgradestone"
+    }
+  ],
+  "result":"armourbeyond:devitem2",
+  "count": 1
+}

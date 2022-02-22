@@ -75,27 +75,30 @@ public class InjectorRecipe implements IRecipe<IInventory> {
 
         if(pInv.getItem(0).getItem().is(ItemTags.bind(new ResourceLocation(armourbeyond.MOD_ID, "upgradable_armor").toString()))) {
             int rank = getRank(pInv.getItem(0));
+            Item upgrade_shard = GetUpgradeShard(rank);
+            Item levelup_shard = GetUpgradeShard(rank-1);
+
             if(rank ==-1 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() ==  Items.BREAD)){
                 OkUpgrade = true;
-            }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == ModItems.ETERNITY_SHARD.get())){
+            }else if(getLevel(pInv.getItem(0))>=0 && getLevel(pInv.getItem(0)) < 10 && IntStream.of(1, 2, 3, 4, 5).allMatch(j -> pInv.getItem(j).getItem() == levelup_shard/*ModItems.ETERNITY_SHARD.get()*/)){
                 OkUpgrade = true;
             }else if(getLevel(pInv.getItem(0))==10){
                 Item item1 = pInv.getItem(1).getItem();
-                if(rank == 0 && item1 == ModItems.UPGRADE_WOOD.get()){
+                if(rank == 0 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 1 && item1 == ModItems.UPGRADE_STONE.get()){
+                }else if(rank == 1 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 2 && item1 == ModItems.UPGRADE_IRON.get()){
+                }else if(rank == 2 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 3 && item1 == ModItems.UPGRADE_GOLD.get()){
+                }else if(rank == 3 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 4 && item1 == ModItems.UPGRADE_DIAMOND.get()){
+                }else if(rank == 4 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 5 && item1 == ModItems.UPGRADE_EMERALD.get()){
+                }else if(rank == 5 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 6 && item1 == ModItems.UPGRADE_NETHERITE.get()){
+                }else if(rank == 6 && item1 == upgrade_shard){
                     OkUpgrade = true;
-                }else if(rank == 7 && item1 == ModItems.UPGRADE_ETERNAL.get()){
+                }else if(rank == 7 && item1 == upgrade_shard){
                     OkUpgrade = true;
                 }
             }
@@ -164,6 +167,29 @@ public class InjectorRecipe implements IRecipe<IInventory> {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public Item GetUpgradeShard(int rank){
+        switch (rank) {
+            case 0:
+                return ModItems.UPGRADE_WOOD.get();
+            case 1:
+                return ModItems.UPGRADE_STONE.get();
+            case 2:
+                return ModItems.UPGRADE_IRON.get();
+            case 3:
+                return ModItems.UPGRADE_GOLD.get();
+            case 4:
+                return ModItems.UPGRADE_DIAMOND.get();
+            case 5:
+                return ModItems.UPGRADE_EMERALD.get();
+            case 6:
+                return ModItems.UPGRADE_NETHERITE.get();
+            case 7:
+                return ModItems.UPGRADE_ETERNAL.get();
+            default:
+                return ModItems.ETERNITY_SHARD.get();
+        }
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<InjectorRecipe> {
