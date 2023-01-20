@@ -1,5 +1,6 @@
 package com.criscky.armourbeyond.setup.blocks;
 
+import com.criscky.armourbeyond.setup.configs.CommonConfig;
 import com.criscky.armourbeyond.setup.tileentities.InjectorTileEntity;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -10,6 +11,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.*;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -24,10 +27,14 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
+import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
@@ -95,7 +102,8 @@ public class Injector extends Block {
     }
 
     public Injector() {
-        super(AbstractBlock.Properties.of(Material.CLAY));
+        super(AbstractBlock.Properties.of(Material.STONE).strength(150.0F, 3600000.0F));
+
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 
     }
@@ -127,6 +135,20 @@ public class Injector extends Block {
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public List<ItemStack> getDrops(BlockState pState, LootContext.Builder pBuilder) {
+        ResourceLocation resourcelocation = this.getLootTable();
+        if (resourcelocation == LootTables.EMPTY || !CommonConfig.injector_can_drop.get()) {
+            return Collections.emptyList();
+        } else {
+            LootContext lootcontext = pBuilder.withParameter(LootParameters.BLOCK_STATE, pState).create(LootParameterSets.BLOCK);
+            ServerWorld serverworld = lootcontext.getLevel();
+            LootTable loottable = serverworld.getServer().getLootTables().get(resourcelocation);
+            return loottable.getRandomItems(lootcontext);
+        }
     }
 
     @SuppressWarnings("deprecation")

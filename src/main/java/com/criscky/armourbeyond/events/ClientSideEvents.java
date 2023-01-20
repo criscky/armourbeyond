@@ -15,6 +15,9 @@ import static com.criscky.armourbeyond.Helper.getRank;
 public class ClientSideEvents {
     @SubscribeEvent
     public static void AddToolTip(ItemTooltipEvent event){
+        if(event.getPlayer() == null) return;
+        if(event.getItemStack() == null) return;
+
         int rank = getRank(event.getItemStack());
         if(rank>-1){
             event.getToolTip().add(new StringTextComponent("Rank: "+RankName(rank) + " ("+rank+")").withStyle(TextFormatting.BLUE));
