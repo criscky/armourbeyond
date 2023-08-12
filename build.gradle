@@ -15,7 +15,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.3'
+version = '1.4'
 group = 'com.criscky.armourbeyond'
 archivesBaseName = 'ArmourBeyond-1.16.5'
 

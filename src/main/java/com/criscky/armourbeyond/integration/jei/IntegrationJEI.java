@@ -1,6 +1,7 @@
 package com.criscky.armourbeyond.integration.jei;
 
 import com.criscky.armourbeyond.armourbeyond;
+import com.criscky.armourbeyond.crafting.recipes.Injector2Recipe;
 import com.criscky.armourbeyond.crafting.recipes.InjectorRecipe;
 import com.criscky.armourbeyond.setup.ModBlocks;
 import com.criscky.armourbeyond.setup.ModRecipes;
@@ -28,18 +29,21 @@ public class IntegrationJEI implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new InjectorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new Injector2RecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
         registration.addRecipes(rm.getAllRecipesFor(ModRecipes.Types.INJECTION).stream().filter(r -> r instanceof InjectorRecipe).collect(Collectors.toList()), InjectorRecipeCategory.UID);
+        registration.addRecipes(rm.getAllRecipesFor(ModRecipes.Types.INJECTION2).stream().filter(r -> r instanceof Injector2Recipe).collect(Collectors.toList()), Injector2RecipeCategory.UID);
     }
 
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.INJECTOR.get()), InjectorRecipeCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.INJECTOR2.get()), Injector2RecipeCategory.UID);
     }
 
 }

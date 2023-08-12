@@ -1,6 +1,7 @@
 package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.armourbeyond;
+import com.criscky.armourbeyond.setup.messages.Injector2Message;
 import com.criscky.armourbeyond.setup.messages.InjectorMessage;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +24,10 @@ public class ModNetworks {
             new ResourceLocation(armourbeyond.MOD_ID, "network"),
             () -> NETWORK_VERSION, version -> version.equals(NETWORK_VERSION),
             version -> version.equals(NETWORK_VERSION));
+    public static final SimpleChannel CHANNEL2 = NetworkRegistry.newSimpleChannel(
+            new ResourceLocation(armourbeyond.MOD_ID, "network2"),
+            () -> NETWORK_VERSION, version -> version.equals(NETWORK_VERSION),
+            version -> version.equals(NETWORK_VERSION));
 
     public static <MSG> void sendToAllTracking(SimpleChannel channel, MSG message, TileEntity tile) {
         sendToAllTracking(channel, message, tile.getLevel(), tile.getBlockPos());
@@ -41,6 +46,7 @@ public class ModNetworks {
 
     public static void register() {
         CHANNEL.registerMessage(0, InjectorMessage.class, InjectorMessage::encode, InjectorMessage::decode, InjectorMessage::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL2.registerMessage(0, Injector2Message.class, Injector2Message::encode, Injector2Message::decode, Injector2Message::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
 
     }
 

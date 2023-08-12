@@ -1,6 +1,7 @@
 package com.criscky.armourbeyond.setup;
 
 import com.criscky.armourbeyond.armourbeyond;
+import com.criscky.armourbeyond.setup.client.tileentityrender.Injector2Renderer;
 import com.criscky.armourbeyond.setup.client.tileentityrender.InjectorRenderer;
 import com.criscky.armourbeyond.setup.configs.ClientConfig;
 import com.criscky.armourbeyond.setup.configs.CommonConfig;
@@ -77,6 +78,8 @@ public class Registration {
 
             RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR.get(), RenderType.cutout());
             ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR.get(), InjectorRenderer::new);
+            RenderTypeLookup.setRenderLayer(ModBlocks.INJECTOR2.get(), RenderType.cutout());
+            ClientRegistry.bindTileEntityRenderer(ModTileEntities.INJECTOR2.get(), Injector2Renderer::new);
 
         }
     }

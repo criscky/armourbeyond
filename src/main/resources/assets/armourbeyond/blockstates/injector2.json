@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "armourbeyond:block/injector"},
+    "facing=south": { "model": "armourbeyond:block/injector", "y": 180},
+    "facing=east": { "model": "armourbeyond:block/injector", "y": 90},
+    "facing=west": { "model": "armourbeyond:block/injector", "y": 270}
+  }
+}

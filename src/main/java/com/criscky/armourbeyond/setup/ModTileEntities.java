@@ -1,5 +1,6 @@
 package com.criscky.armourbeyond.setup;
 
+import com.criscky.armourbeyond.setup.tileentities.Injector2TileEntity;
 import com.criscky.armourbeyond.setup.tileentities.InjectorTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
@@ -13,6 +14,11 @@ public class ModTileEntities {
             "injector",
             InjectorTileEntity::new,
             ModBlocks.INJECTOR
+    );
+    public static final RegistryObject<TileEntityType<Injector2TileEntity>> INJECTOR2 = register(
+            "injector2",
+            Injector2TileEntity::new,
+            ModBlocks.INJECTOR2
     );
 
     static void register() {}
